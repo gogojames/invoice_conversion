@@ -13,12 +13,12 @@ namespace InvoiceConversion
         public InCoFm()
         {
             InitializeComponent();
-            this.invoicedetailBindingSource.DataSource = Common.MsSql.getInvoiceDetail(custmer_text.Text, "0351446");
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            InvoiceConversion.Data.Invoice i = new Data.Invoice();
+            InvoiceConversion.Data.Invoice_master i = new Data.Invoice_master();
         }
         
         private void manageBut_Click(object sender, EventArgs e)
@@ -34,6 +34,11 @@ namespace InvoiceConversion
         private void SaveBut_Click(object sender, EventArgs e)
         {
             //保存
+        }
+
+        private void custmer_text_TextChanged(object sender, EventArgs e)
+        {
+            //this.invoicedetailBindingSource.DataSource = Common.MsSql.getInvoiceDetail(custmer_text.Text, "0351446");
         }
     }
 }

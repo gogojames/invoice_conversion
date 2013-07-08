@@ -73,14 +73,14 @@ namespace InvoiceConversion.Common
             }
         }
 
-        public static List<Data.Invoice> getInvoice(string client_name,DateTime start_date,DateTime end_date)
+        public static List<Data.Invoice_master> getInvoice(string client_name,DateTime start_date,DateTime end_date)
         {
-            List<Data.Invoice> li = new List<Data.Invoice>();
-            string sql = @"SELECT   dbo.Custmer.Client_ID, dbo.Custmer.Client_N, dbo.Invoice.Invoice_Date, dbo.Invoice.AInvoice_ID, dbo.Invoice.Invoice_ID
+            List<Data.Invoice_master> li = new List<Data.Invoice_master>();
+            string sql = @"SELECT   dbo.Custmer.Client_ID, dbo.Custmer.Client_N, dbo.Invoice.Invoice_Date, dbo.Invoice.AInvoice_ID, dbo.Invoice.Invoice_ID 
 " +
-                        "FROM      dbo.Custmer INNER JOIN"+
-                  " dbo.Invoice ON dbo.Custmer.Client_ID = dbo.Invoice.Client_ID"+
-                  "WHERE   (dbo.Invoice.Invoice_Date BETWEEN @start_date AND @end_date) AND (dbo.Custmer.Client_N LIKE @client_name)";
+                        "FROM      dbo.Custmer INNER JOIN "+
+                  " dbo.Invoice ON dbo.Custmer.Client_ID = dbo.Invoice.Client_ID "+
+                  "WHERE   (dbo.Invoice.Invoice_Date BETWEEN @start_date AND @end_date) AND (dbo.Custmer.Client_N LIKE @client_name) ";
             using(System.Data.SqlClient.SqlConnection conn=MsSql.connection){
                 System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
                 cmd.CommandText = sql;
@@ -95,7 +95,7 @@ namespace InvoiceConversion.Common
                     System.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        Data.Invoice idetail = new Data.Invoice();
+                        Data.Invoice_master idetail = new Data.Invoice_master();
                         idetail.Ainvoice_id = MsSql.ToString(reader["AInvoice_ID"]);
                         idetail.Client_id = reader["Client_ID"].ToString();
                         idetail.Client_name = reader["Client_N"].ToString();
