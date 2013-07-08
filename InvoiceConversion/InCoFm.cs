@@ -40,7 +40,9 @@ namespace InvoiceConversion
 
         private void custmer_text_TextChanged(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
             this.invoicedetailBindingSource.DataSource = Common.MsSql.getInvoiceDetail(custmer_text.Text);
+            this.Cursor = Cursors.Default;
         }
     }
 }
