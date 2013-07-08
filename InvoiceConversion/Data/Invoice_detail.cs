@@ -25,9 +25,9 @@ namespace InvoiceConversion.Data
                 }
                 }
         }
-        private int item_id;
+        private float item_id;
 
-        public int Item_id
+        public float Item_id
         {
             get { return item_id; }
             set {
@@ -96,6 +96,25 @@ namespace InvoiceConversion.Data
                     OnPropertyChanged("Qty");
                 }
                 }
+        }
+
+        private string item_name;
+
+        public string Item_name
+        {
+            get { return item_name; }
+            set {
+                if (item_name != value)
+                {
+                    if (InEdit)
+                    {
+                        SaveState("Item_name", item_name);
+                        SaveData("Item_name", value);
+                    }
+                    item_name = value;
+                    OnPropertyChanged("Item_name");
+                }
+            }
         }
 
     }

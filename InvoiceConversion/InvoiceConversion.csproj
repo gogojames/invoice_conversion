@@ -61,15 +61,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Access\Login.cs" />
+    <Compile Include="AddComFm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddComFm.Designer.cs">
+      <DependentUpon>AddComFm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\AoutSqlExc.cs" />
     <Compile Include="Common\BusinessObjectBase.cs" />
     <Compile Include="Common\Basic.cs" />
     <Compile Include="Common\MsSql.cs" />
-    <Compile Include="Data\Company.cs" />
+    <Compile Include="Data\InvoiceTitel.cs" />
     <Compile Include="Data\Custmer.cs">
       <DependentUpon>Custmer.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Data\Invoice.cs" />
+    <Compile Include="Data\Invoice_master.cs" />
     <Compile Include="Data\Invoice_detail.cs" />
     <Compile Include="InCoFm.cs">
       <SubType>Form</SubType>
@@ -97,6 +103,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddComFm.resx">
+      <DependentUpon>AddComFm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InCoFm.resx">
       <DependentUpon>InCoFm.cs</DependentUpon>
     </EmbeddedResource>

@@ -11,3 +11,4 @@ E:\leson\InvoiceConversion\InvoiceConversion\obj\x86\Debug\InvoiceConversion.pdb
 E:\leson\InvoiceConversion\InvoiceConversion\obj\x86\Debug\InvoiceConversion.MainFm.resources
 E:\leson\InvoiceConversion\InvoiceConversion\bin\Debug\InvoiceConversion.exe.config
 E:\leson\InvoiceConversion\InvoiceConversion\obj\x86\Debug\InvoiceConversion.Mdbfm.resources
+E:\leson\InvoiceConversion\InvoiceConversion\obj\x86\Debug\InvoiceConversion.AddComFm.resources

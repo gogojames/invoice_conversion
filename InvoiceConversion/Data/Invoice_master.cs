@@ -98,6 +98,24 @@ namespace InvoiceConversion.Data
                 }
                 }
         }
+        private string remake;
+
+        public string Remake
+        {
+            get { return remake; }
+            set {
+                if (remake != value)
+                {
+                    if (InEdit)
+                    {
+                        SaveState("Remake", remake);
+                        SaveData("Remake", value);
+                    }
+                    remake = value;
+                    OnPropertyChanged("Remake");
+                }
+                }
+        }
         private DateTime invoice_date;
 
         public DateTime Invoice_date

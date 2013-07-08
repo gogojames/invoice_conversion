@@ -122,7 +122,7 @@ namespace InvoiceConversion.Common
             {
             string sql="SELECT dbo.Custmer.Client_N, dbo.Custmer.Client_ID, dbo.Custmer.Address, dbo.Invoice.AInvoice_ID, "+
   "              dbo.Invoice.Invoice_ID, dbo.Invoice.Contact_Per, dbo.Invoice.Invoice_Date, dbo.Invoice_item.Unit, "+
- "               dbo.Invoice_item.Price, dbo.Invoice_item.Qty,dbo.Invoice_item.Item_ID "+
+ "               dbo.Invoice_item.Price, dbo.Invoice_item.Qty,dbo.Invoice_item.Item_ID,dbo.Invoice_item.Metrial_N " +
 "FROM      dbo.Custmer INNER JOIN "+
   "              dbo.Invoice ON dbo.Custmer.Client_ID = dbo.Invoice.Client_ID INNER JOIN "+
  "               dbo.Invoice_item ON dbo.Invoice.AInvoice_ID = dbo.Invoice_item.AInvoice_ID "+
@@ -141,13 +141,15 @@ namespace InvoiceConversion.Common
                 {
                     Data.Invoice_detail idetail = new Data.Invoice_detail();
                     idetail.AInvoice_id = MsSql.ToString(reader["AInvoice_ID"]);
-                    idetail.Item_id = MsSql.ToInt(reader["Item_ID"]).Value;
+                    float item_id;
+                    float.TryParse(reader["Item_ID"].ToString(), out item_id);
+                    idetail.Item_id = item_id;
                     double _qty = 0.00;
                     double.TryParse(reader["Qty"].ToString(), out _qty);
                     idetail.Qty = _qty;
                     double _rpice = 0.00;
                     double.TryParse(reader["Price"].ToString(), out _rpice);
-
+                    idetail.Item_name = reader["Metrial_N"].ToString();
                     idetail.Rpice = _rpice;
                     idetail.Unit = reader["Unit"].ToString();
                     dids.Add(idetail);
