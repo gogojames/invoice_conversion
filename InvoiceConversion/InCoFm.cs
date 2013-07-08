@@ -14,6 +14,23 @@ namespace InvoiceConversion
         {
             InitializeComponent();
             this.customerBindingSource.DataSource = Common.MsSql.getCustmer();
+            this.invoicemasterBindingSource.CurrentChanged += new EventHandler(invoicemasterBindingSource_CurrentChanged);
+        }
+
+        void invoicemasterBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+            Data.Invoice_master currim = invoicemasterBindingSource.Current as Data.Invoice_master;
+            if (currim == null)
+            {
+                try
+                {
+                    currim = invoicemasterBindingSource[0] as Data.Invoice_master;
+                }
+                catch {
+                    this.invoicedetailBindingSource.DataSource=typeof( Data.Invoice_detail);
+                    return; }
+            }
+            this.invoicedetailBindingSource.DataSource = Common.MsSql.getInvoiceDetail(currim.Client_name, dateTimePicker1.Value, dateTimePicker2.Value);
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -41,7 +58,23 @@ namespace InvoiceConversion
         private void custmer_text_TextChanged(object sender, EventArgs e)
         {
             this.Cursor = Cursors.WaitCursor;
-            this.invoicedetailBindingSource.DataSource = Common.MsSql.getInvoiceDetail(custmer_text.Text);
+            this.invoicemasterBindingSource.DataSource = Common.MsSql.getInvoice(custmer_text.Text, dateTimePicker1.Value, dateTimePicker2.Value);
+            this.Cursor = Cursors.Default;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+
+            this.invoicemasterBindingSource.DataSource = Common.MsSql.getInvoice(custmer_text.Text, dateTimePicker1.Value, dateTimePicker2.Value);
+            this.Cursor = Cursors.Default;
+        }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+
+            this.invoicemasterBindingSource.DataSource = Common.MsSql.getInvoice(custmer_text.Text, dateTimePicker1.Value, dateTimePicker2.Value);
             this.Cursor = Cursors.Default;
         }
     }

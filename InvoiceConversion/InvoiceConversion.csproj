@@ -129,6 +129,7 @@
     <None Include="Properties\DataSources\InvoiceConversion.Data.Customer.datasource" />
     <None Include="Properties\DataSources\InvoiceConversion.Data.InvoiceTitel.datasource" />
     <None Include="Properties\DataSources\InvoiceConversion.Data.Invoice_detail.datasource" />
+    <None Include="Properties\DataSources\InvoiceConversion.Data.Invoice_master.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

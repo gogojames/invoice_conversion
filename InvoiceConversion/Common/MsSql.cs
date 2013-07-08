@@ -80,13 +80,13 @@ namespace InvoiceConversion.Common
 " +
                         "FROM      dbo.Custmer INNER JOIN "+
                   " dbo.Invoice ON dbo.Custmer.Client_ID = dbo.Invoice.Client_ID "+
-                  "WHERE   (dbo.Invoice.Invoice_Date BETWEEN @start_date AND @end_date) AND (dbo.Custmer.Client_N LIKE @client_name) ";
+                  "WHERE   (dbo.Invoice.Invoice_Date BETWEEN @start_date AND @end_date) AND (dbo.Custmer.Client_N = @client_name) ";
             using(System.Data.SqlClient.SqlConnection conn=MsSql.connection){
                 System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
                 cmd.CommandText = sql;
                 cmd.Parameters.Add("@client_name", System.Data.SqlDbType.NVarChar).Value = client_name;
-                cmd.Parameters.Add("@start_date", System.Data.SqlDbType.Date).Value = start_date;
-                cmd.Parameters.Add("@end_date", System.Data.SqlDbType.Date).Value = end_date;
+                cmd.Parameters.Add("@start_date", System.Data.SqlDbType.DateTime).Value = start_date;
+                cmd.Parameters.Add("@end_date", System.Data.SqlDbType.DateTime).Value = end_date;
 
                 cmd.Connection = conn;
                 try
@@ -115,7 +115,7 @@ namespace InvoiceConversion.Common
             return li;
         }
 
-        public static List<Data.Invoice_detail> getInvoiceDetail(string client_name)
+        public static List<Data.Invoice_detail> getInvoiceDetail(string client_name, DateTime start_date, DateTime end_date)
         {
             List<Data.Invoice_detail> dids = new List<Data.Invoice_detail>();
             using (System.Data.SqlClient.SqlConnection conn = MsSql.connection) 
@@ -126,12 +126,13 @@ namespace InvoiceConversion.Common
 "FROM      dbo.Custmer INNER JOIN "+
   "              dbo.Invoice ON dbo.Custmer.Client_ID = dbo.Invoice.Client_ID INNER JOIN "+
  "               dbo.Invoice_item ON dbo.Invoice.AInvoice_ID = dbo.Invoice_item.AInvoice_ID "+
-"WHERE   (dbo.Custmer.Client_N LIKE @client_name ) "+
+"WHERE   (dbo.Custmer.Client_N = @client_name ) and (dbo.Invoice.Invoice_Date BETWEEN @start_date AND @end_date) " +
 "ORDER BY dbo.Invoice.Invoice_Date DESC";
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandText = sql;
-            cmd.Parameters.Add("@client_name", System.Data.SqlDbType.NVarChar).Value = "%"+client_name;
-            //cmd.Parameters.Add("@invoice_id", System.Data.SqlDbType.NVarChar).Value = invoice_id;
+            cmd.Parameters.Add("@client_name", System.Data.SqlDbType.NVarChar).Value = client_name;
+            cmd.Parameters.Add("@start_date", System.Data.SqlDbType.DateTime).Value = start_date;
+            cmd.Parameters.Add("@end_date", System.Data.SqlDbType.DateTime).Value = end_date;
             cmd.Connection = conn;
             try
             {
