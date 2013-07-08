@@ -122,15 +122,15 @@ namespace InvoiceConversion.Common
             {
             string sql="SELECT dbo.Custmer.Client_N, dbo.Custmer.Client_ID, dbo.Custmer.Address, dbo.Invoice.AInvoice_ID, "+
   "              dbo.Invoice.Invoice_ID, dbo.Invoice.Contact_Per, dbo.Invoice.Invoice_Date, dbo.Invoice_item.Unit, "+
- "               dbo.Invoice_item.Price, dbo.Invoice_item.Qty,dbo.Invoice_item.Item_ID"+
-"FROM      dbo.Custmer INNER JOIN"+
-  "              dbo.Invoice ON dbo.Custmer.Client_ID = dbo.Invoice.Client_ID INNER JOIN"+
- "               dbo.Invoice_item ON dbo.Invoice.AInvoice_ID = dbo.Invoice_item.AInvoice_ID"+
-"WHERE   (dbo.Custmer.Client_N LIKE @client_name ) AND (dbo.Invoice.Invoice_ID = @invoice_id )"+
+ "               dbo.Invoice_item.Price, dbo.Invoice_item.Qty,dbo.Invoice_item.Item_ID "+
+"FROM      dbo.Custmer INNER JOIN "+
+  "              dbo.Invoice ON dbo.Custmer.Client_ID = dbo.Invoice.Client_ID INNER JOIN "+
+ "               dbo.Invoice_item ON dbo.Invoice.AInvoice_ID = dbo.Invoice_item.AInvoice_ID "+
+"WHERE   (dbo.Custmer.Client_N LIKE @client_name ) AND (dbo.Invoice.Invoice_ID = @invoice_id ) "+
 "ORDER BY dbo.Invoice.Invoice_Date DESC";
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandText = sql;
-            cmd.Parameters.Add("@client_name", System.Data.SqlDbType.NVarChar).Value = "%"+client_name+"%";
+            cmd.Parameters.Add("@client_name", System.Data.SqlDbType.NVarChar).Value = "%"+client_name;
             cmd.Parameters.Add("@invoice_id", System.Data.SqlDbType.NVarChar).Value = invoice_id;
             cmd.Connection = conn;
             try

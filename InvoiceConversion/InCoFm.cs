@@ -13,7 +13,7 @@ namespace InvoiceConversion
         public InCoFm()
         {
             InitializeComponent();
-            this.invoicedetailBindingSource.DataSource = Common.MsSql.getInvoiceDetail("ACE APPAREL ACCESSORIES LTD", "0351446");
+            this.invoicedetailBindingSource.DataSource = Common.MsSql.getInvoiceDetail(custmer_text.Text, "0351446");
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
