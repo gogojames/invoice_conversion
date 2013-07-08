@@ -88,7 +88,7 @@
             // SaveBut
             // 
             this.SaveBut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveBut.Location = new System.Drawing.Point(408, 20);
+            this.SaveBut.Location = new System.Drawing.Point(651, 18);
             this.SaveBut.Name = "SaveBut";
             this.SaveBut.Size = new System.Drawing.Size(73, 43);
             this.SaveBut.TabIndex = 12;
