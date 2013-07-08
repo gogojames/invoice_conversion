@@ -71,10 +71,8 @@
     <Compile Include="Common\BusinessObjectBase.cs" />
     <Compile Include="Common\Basic.cs" />
     <Compile Include="Common\MsSql.cs" />
+    <Compile Include="Data\Customer.cs" />
     <Compile Include="Data\InvoiceTitel.cs" />
-    <Compile Include="Data\Custmer.cs">
-      <DependentUpon>Custmer.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Data\Invoice_master.cs" />
     <Compile Include="Data\Invoice_detail.cs" />
     <Compile Include="InCoFm.cs">
@@ -128,6 +126,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="App.config" />
+    <None Include="Properties\DataSources\InvoiceConversion.Data.Customer.datasource" />
+    <None Include="Properties\DataSources\InvoiceConversion.Data.InvoiceTitel.datasource" />
     <None Include="Properties\DataSources\InvoiceConversion.Data.Invoice_detail.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

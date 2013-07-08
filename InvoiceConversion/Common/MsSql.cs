@@ -115,7 +115,7 @@ namespace InvoiceConversion.Common
             return li;
         }
 
-        public static List<Data.Invoice_detail> getInvoiceDetail(string client_name,string invoice_id)
+        public static List<Data.Invoice_detail> getInvoiceDetail(string client_name)
         {
             List<Data.Invoice_detail> dids = new List<Data.Invoice_detail>();
             using (System.Data.SqlClient.SqlConnection conn = MsSql.connection) 
@@ -126,12 +126,12 @@ namespace InvoiceConversion.Common
 "FROM      dbo.Custmer INNER JOIN "+
   "              dbo.Invoice ON dbo.Custmer.Client_ID = dbo.Invoice.Client_ID INNER JOIN "+
  "               dbo.Invoice_item ON dbo.Invoice.AInvoice_ID = dbo.Invoice_item.AInvoice_ID "+
-"WHERE   (dbo.Custmer.Client_N LIKE @client_name ) AND (dbo.Invoice.Invoice_ID = @invoice_id ) "+
+"WHERE   (dbo.Custmer.Client_N LIKE @client_name ) "+
 "ORDER BY dbo.Invoice.Invoice_Date DESC";
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandText = sql;
             cmd.Parameters.Add("@client_name", System.Data.SqlDbType.NVarChar).Value = "%"+client_name;
-            cmd.Parameters.Add("@invoice_id", System.Data.SqlDbType.NVarChar).Value = invoice_id;
+            //cmd.Parameters.Add("@invoice_id", System.Data.SqlDbType.NVarChar).Value = invoice_id;
             cmd.Connection = conn;
             try
             {
@@ -162,6 +162,40 @@ namespace InvoiceConversion.Common
 
             }
             return dids; 
+        }
+
+        public static List<Data.Customer> getCustmer()
+        {
+            List<Data.Customer> lc = new List<Data.Customer>();
+            using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)
+            {
+                string sql = "SELECT   * FROM      dbo.Custmer";
+                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+                cmd.CommandText = sql;
+                cmd.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    System.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Data.Customer c = new Data.Customer();
+                        c.Address = reader["Address"].ToString();
+                        c.Clent_n = reader["Client_N"].ToString();
+                        c.Client_id = reader["Client_ID"].ToString();
+                        c.Phone = reader["Phone"].ToString();
+                        c.Fax = reader["FAX"].ToString();
+                        c.E_mail = reader["E_Mail"].ToString();
+                        lc.Add(c);
+                    }
+                }
+                finally
+                {
+                    conn.Close();
+                }
+
+            }
+            return lc;
         }
 
         public static string ToString(object obj)

@@ -13,7 +13,7 @@ namespace InvoiceConversion
         public InCoFm()
         {
             InitializeComponent();
-            
+            this.customerBindingSource.DataSource = Common.MsSql.getCustmer();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -24,6 +24,8 @@ namespace InvoiceConversion
         private void manageBut_Click(object sender, EventArgs e)
         {
             //管理发票 标题
+            AddComFm acf = new AddComFm();
+            acf.ShowDialog();
         }
 
         private void msleBut_Click(object sender, EventArgs e)
@@ -38,7 +40,7 @@ namespace InvoiceConversion
 
         private void custmer_text_TextChanged(object sender, EventArgs e)
         {
-            //this.invoicedetailBindingSource.DataSource = Common.MsSql.getInvoiceDetail(custmer_text.Text, "0351446");
+            this.invoicedetailBindingSource.DataSource = Common.MsSql.getInvoiceDetail(custmer_text.Text);
         }
     }
 }

@@ -30,10 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.custmer_text = new System.Windows.Forms.ComboBox();
+            this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.invoiceNmber_text = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SaveBut = new System.Windows.Forms.Button();
             this.manageBut = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.title_combox = new System.Windows.Forms.ComboBox();
+            this.invoiceTitelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.msleBut = new System.Windows.Forms.Button();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
@@ -44,17 +49,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
-            this.invoiceNmber_text = new System.Windows.Forms.TextBox();
-            this.custmer_text = new System.Windows.Forms.ComboBox();
-            this.invoicedetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.aInvoiceidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Item_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rpiceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.unitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invoicedetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicedetailBindingSource)).BeginInit();
@@ -84,6 +88,40 @@
             this.groupBox1.Size = new System.Drawing.Size(734, 113);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // custmer_text
+            // 
+            this.custmer_text.DataSource = this.customerBindingSource;
+            this.custmer_text.DisplayMember = "Clent_n";
+            this.custmer_text.FormattingEnabled = true;
+            this.custmer_text.Location = new System.Drawing.Point(72, 15);
+            this.custmer_text.Name = "custmer_text";
+            this.custmer_text.Size = new System.Drawing.Size(318, 20);
+            this.custmer_text.TabIndex = 15;
+            this.custmer_text.ValueMember = "Clent_n";
+            this.custmer_text.SelectedIndexChanged += new System.EventHandler(this.custmer_text_TextChanged);
+            // 
+            // customerBindingSource
+            // 
+            this.customerBindingSource.DataSource = typeof(InvoiceConversion.Data.Customer);
+            // 
+            // invoiceNmber_text
+            // 
+            this.invoiceNmber_text.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.invoiceNmber_text.Location = new System.Drawing.Point(446, 86);
+            this.invoiceNmber_text.Name = "invoiceNmber_text";
+            this.invoiceNmber_text.Size = new System.Drawing.Size(90, 21);
+            this.invoiceNmber_text.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(387, 92);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 12);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "發票編號";
             // 
             // SaveBut
             // 
@@ -117,11 +155,18 @@
             // 
             // title_combox
             // 
+            this.title_combox.DataSource = this.invoiceTitelBindingSource;
+            this.title_combox.DisplayMember = "Company_name";
             this.title_combox.FormattingEnabled = true;
             this.title_combox.Location = new System.Drawing.Point(72, 87);
             this.title_combox.Name = "title_combox";
             this.title_combox.Size = new System.Drawing.Size(236, 20);
             this.title_combox.TabIndex = 9;
+            this.title_combox.ValueMember = "Company_id";
+            // 
+            // invoiceTitelBindingSource
+            // 
+            this.invoiceTitelBindingSource.DataSource = typeof(InvoiceConversion.Data.InvoiceTitel);
             // 
             // textBox2
             // 
@@ -225,36 +270,6 @@
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(387, 92);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 12);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "發票編號";
-            // 
-            // invoiceNmber_text
-            // 
-            this.invoiceNmber_text.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.invoiceNmber_text.Location = new System.Drawing.Point(446, 86);
-            this.invoiceNmber_text.Name = "invoiceNmber_text";
-            this.invoiceNmber_text.Size = new System.Drawing.Size(90, 21);
-            this.invoiceNmber_text.TabIndex = 14;
-            // 
-            // custmer_text
-            // 
-            this.custmer_text.FormattingEnabled = true;
-            this.custmer_text.Location = new System.Drawing.Point(72, 15);
-            this.custmer_text.Name = "custmer_text";
-            this.custmer_text.Size = new System.Drawing.Size(318, 20);
-            this.custmer_text.TabIndex = 15;
-            // 
-            // invoicedetailBindingSource
-            // 
-            this.invoicedetailBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_detail);
-            // 
             // aInvoiceidDataGridViewTextBoxColumn
             // 
             this.aInvoiceidDataGridViewTextBoxColumn.DataPropertyName = "Item_id";
@@ -292,6 +307,10 @@
             this.qtyDataGridViewTextBoxColumn.HeaderText = "數量";
             this.qtyDataGridViewTextBoxColumn.Name = "qtyDataGridViewTextBoxColumn";
             // 
+            // invoicedetailBindingSource
+            // 
+            this.invoicedetailBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_detail);
+            // 
             // InCoFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -305,6 +324,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicedetailBindingSource)).EndInit();
@@ -339,5 +360,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rpiceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn unitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn qtyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource customerBindingSource;
+        private System.Windows.Forms.BindingSource invoiceTitelBindingSource;
     }
 }
