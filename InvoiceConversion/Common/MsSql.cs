@@ -76,11 +76,11 @@ namespace InvoiceConversion.Common
         public static List<Data.Invoice_master> getInvoice(string client_name,DateTime start_date,DateTime end_date)
         {
             List<Data.Invoice_master> li = new List<Data.Invoice_master>();
-            string sql = @"SELECT   dbo.Custmer.Client_ID, dbo.Custmer.Client_N, dbo.Invoice.Invoice_Date, dbo.Invoice.AInvoice_ID, dbo.Invoice.Invoice_ID 
-" +
-                        "FROM      dbo.Custmer INNER JOIN "+
-                  " dbo.Invoice ON dbo.Custmer.Client_ID = dbo.Invoice.Client_ID "+
-                  "WHERE   (dbo.Invoice.Invoice_Date BETWEEN @start_date AND @end_date) AND (dbo.Custmer.Client_N = @client_name) ";
+            string sql = @"SELECT   Custmer.Client_ID, Custmer.Client_N, "+
+                "Invoice.Invoice_Date, Invoice.AInvoice_ID, Invoice.Invoice_ID,Invoice.Meno " +
+                        "FROM      Custmer INNER JOIN "+
+                  " Invoice ON Custmer.Client_ID = Invoice.Client_ID "+
+                  "WHERE   (Invoice.Invoice_Date BETWEEN @start_date AND @end_date) AND (Custmer.Client_N = @client_name) ";
             using(System.Data.SqlClient.SqlConnection conn=MsSql.connection){
                 System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
                 cmd.CommandText = sql;
@@ -100,8 +100,9 @@ namespace InvoiceConversion.Common
                         idetail.Client_id = reader["Client_ID"].ToString();
                         idetail.Client_name = reader["Client_N"].ToString();
                         idetail.Invoice_date = DateTime.Parse(reader["Invoice_Date"].ToString());
-                        idetail.Invoice_nmber = "";
+                        idetail.Invoice_nmber = Guid.NewGuid().ToString();
                         idetail.Invoice_title_id = 0;
+                        idetail.Remake = reader["Meno"].ToString();
                         li.Add(idetail);
                     }
                 }
@@ -120,14 +121,14 @@ namespace InvoiceConversion.Common
             List<Data.Invoice_detail> dids = new List<Data.Invoice_detail>();
             using (System.Data.SqlClient.SqlConnection conn = MsSql.connection) 
             {
-            string sql="SELECT dbo.Custmer.Client_N, dbo.Custmer.Client_ID, dbo.Custmer.Address, dbo.Invoice.AInvoice_ID, "+
-  "              dbo.Invoice.Invoice_ID, dbo.Invoice.Contact_Per, dbo.Invoice.Invoice_Date, dbo.Invoice_item.Unit, "+
- "               dbo.Invoice_item.Price, dbo.Invoice_item.Qty,dbo.Invoice_item.Item_ID,dbo.Invoice_item.Metrial_N " +
-"FROM      dbo.Custmer INNER JOIN "+
-  "              dbo.Invoice ON dbo.Custmer.Client_ID = dbo.Invoice.Client_ID INNER JOIN "+
- "               dbo.Invoice_item ON dbo.Invoice.AInvoice_ID = dbo.Invoice_item.AInvoice_ID "+
-"WHERE   (dbo.Custmer.Client_N = @client_name ) and (dbo.Invoice.Invoice_Date BETWEEN @start_date AND @end_date) " +
-"ORDER BY dbo.Invoice.Invoice_Date DESC";
+            string sql="SELECT Custmer.Client_N, Custmer.Client_ID, Custmer.Address, Invoice.AInvoice_ID, "+
+  "              Invoice.Invoice_ID, Invoice.Contact_Per, Invoice.Invoice_Date, Invoice_item.Unit, "+
+ "               Invoice_item.Price, Invoice_item.Qty,Invoice_item.Item_ID,Invoice_item.Metrial_N " +
+"FROM      Custmer INNER JOIN "+
+  "              Invoice ON Custmer.Client_ID = Invoice.Client_ID INNER JOIN "+
+ "               Invoice_item ON Invoice.AInvoice_ID = Invoice_item.AInvoice_ID "+
+"WHERE   (Custmer.Client_N = @client_name ) and (Invoice.Invoice_Date BETWEEN @start_date AND @end_date) " +
+"ORDER BY Invoice.Invoice_Date DESC";
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandText = sql;
             cmd.Parameters.Add("@client_name", System.Data.SqlDbType.NVarChar).Value = client_name;
@@ -170,7 +171,7 @@ namespace InvoiceConversion.Common
             List<Data.Customer> lc = new List<Data.Customer>();
             using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)
             {
-                string sql = "SELECT   * FROM      dbo.Custmer";
+                string sql = "SELECT   * FROM      Custmer";
                 System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
                 cmd.CommandText = sql;
                 cmd.Connection = conn;

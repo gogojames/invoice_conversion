@@ -71,10 +71,10 @@
     <Compile Include="Common\BusinessObjectBase.cs" />
     <Compile Include="Common\Basic.cs" />
     <Compile Include="Common\MsSql.cs" />
-    <Compile Include="Data\Customer.cs" />
-    <Compile Include="Data\InvoiceTitel.cs" />
-    <Compile Include="Data\Invoice_master.cs" />
-    <Compile Include="Data\Invoice_detail.cs" />
+    <Compile Include="Common\Data\Customer.cs" />
+    <Compile Include="Common\Data\InvoiceTitel.cs" />
+    <Compile Include="Common\Data\Invoice_master.cs" />
+    <Compile Include="Common\Data\Invoice_detail.cs" />
     <Compile Include="InCoFm.cs">
       <SubType>Form</SubType>
     </Compile>
