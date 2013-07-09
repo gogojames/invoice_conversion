@@ -22,8 +22,10 @@ namespace InvoiceConversion
         {
             InitializeComponent();
             this.customerBindingSource.DataSource = Common.MsSql.getCustmer();
+            this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
             this.invoicedetailBindingSource.DataSource = List_detail;
             this.invoicemasterBindingSource.CurrentChanged += new EventHandler(invoicemasterBindingSource_CurrentChanged);
+
         }
 
         void invoicemasterBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -67,7 +69,7 @@ namespace InvoiceConversion
             string savl_str = string.Format("0.{0}", textBox2.Text);
             Double.TryParse(savl_str, out savl);
 
-            for(int i =0;i<dataGridView1.RowCount-1;i++)
+            for(int i =0;i<dataGridView1.RowCount;i++)
             {
                 var dv = dataGridView1.Rows[i];
                 double p;
@@ -85,6 +87,7 @@ namespace InvoiceConversion
 
         private void SaveBut_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("生成了新的發票");
             //保存
         }
 

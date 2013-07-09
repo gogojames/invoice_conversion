@@ -7,6 +7,10 @@ namespace InvoiceConversion.Data
     [Serializable]
    public class Invoice_detail:Common.BusinessObjectBase
     {
+        public override string ToString()
+        {
+            return "Invoice_detail";
+        }
         private string aInvoice_id;
 
         public string AInvoice_id

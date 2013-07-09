@@ -43,6 +43,7 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -74,11 +75,12 @@
             this.listBox1.DisplayMember = "Company_name";
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 12;
-            this.listBox1.Location = new System.Drawing.Point(324, 22);
+            this.listBox1.Location = new System.Drawing.Point(302, 10);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(350, 184);
+            this.listBox1.Size = new System.Drawing.Size(372, 280);
             this.listBox1.TabIndex = 6;
             this.listBox1.ValueMember = "Company_id";
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // invoiceTitelBindingSource
             // 
@@ -86,11 +88,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(285, 25);
+            this.button1.Location = new System.Drawing.Point(168, 223);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(33, 173);
+            this.button1.Size = new System.Drawing.Size(87, 53);
             this.button1.TabIndex = 5;
-            this.button1.Text = ">>";
+            this.button1.Text = "保存";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // textBox2
@@ -161,11 +163,22 @@
             this.textBox5.Size = new System.Drawing.Size(192, 21);
             this.textBox5.TabIndex = 4;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(43, 223);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(87, 53);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "新增";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // AddComFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 220);
+            this.ClientSize = new System.Drawing.Size(691, 297);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label4);
@@ -203,5 +216,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.BindingSource invoiceTitelBindingSource1;
+        private System.Windows.Forms.Button button2;
     }
 }

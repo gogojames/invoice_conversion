@@ -166,6 +166,72 @@ namespace InvoiceConversion.Common
             return dids; 
         }
 
+        public static List<Data.InvoiceTitel> getTitle()
+        {
+            List<Data.InvoiceTitel> lc = new List<Data.InvoiceTitel>();
+            using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)
+            {
+                string sql = "SELECT   * FROM      invoiceTitel";
+                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+                cmd.CommandText = sql;
+                cmd.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    System.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Data.InvoiceTitel c = new Data.InvoiceTitel();
+                        c.Address = reader["Address"].ToString();
+                        c.Company_name = reader["company_name"].ToString();
+                        c.Company_id = int.Parse(reader["company_id"].ToString());
+                        c.Phone = reader["Phone"].ToString();
+                        c.Fax = reader["FAX"].ToString();
+                        c.E_mail = reader["E_Mail"].ToString();
+                        lc.Add(c);
+                    }
+                }
+                finally
+                {
+                    conn.Close();
+                }
+
+            }
+            return lc;
+        }
+
+        public static int ExSql(string sql,object[] objs)
+        {
+            int r = 0;
+            using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)
+            {
+                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+                cmd.CommandText = sql;
+                cmd.Connection = conn;
+                for (int i = 0; i < objs.Length; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        int m = i + 1;
+                        System.Data.SqlClient.SqlParameter par = new System.Data.SqlClient.SqlParameter(objs[i].ToString(), objs[m]);
+                        cmd.Parameters.Add(par);
+                    }
+                }
+                try
+                {
+                    conn.Open();
+                   r= cmd.ExecuteNonQuery();
+                   
+                }
+                finally
+                {
+                    conn.Close();
+                }
+
+            }
+            return r;
+        }
+
         public static List<Data.Customer> getCustmer()
         {
             List<Data.Customer> lc = new List<Data.Customer>();
