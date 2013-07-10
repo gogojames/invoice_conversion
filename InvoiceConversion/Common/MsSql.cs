@@ -96,6 +96,7 @@ namespace InvoiceConversion.Common
                     while (reader.Read())
                     {
                         Data.Invoice_master idetail = new Data.Invoice_master();
+                        idetail.BeginEdit();
                         idetail.Ainvoice_id = MsSql.ToString(reader["AInvoice_ID"]);
                         idetail.Client_id = reader["Client_ID"].ToString();
                         idetail.Client_name = reader["Client_N"].ToString();
@@ -142,6 +143,7 @@ namespace InvoiceConversion.Common
                 while (reader.Read())
                 {
                     Data.Invoice_detail idetail = new Data.Invoice_detail();
+                    idetail.BeginEdit();
                     idetail.AInvoice_id = MsSql.ToString(reader["AInvoice_ID"]);
                     float item_id;
                     float.TryParse(reader["Item_ID"].ToString(), out item_id);

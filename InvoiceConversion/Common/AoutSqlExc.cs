@@ -184,7 +184,8 @@ namespace InvoiceConversion.Common
 
                         n++;
                     }
-                    _sql = @"update " + this.ToString() + " set " + _setCol + " where (" + _whereCol + ")";
+
+                    _sql = @"update " + this.ToString() + " set " + _setCol.Remove(_setCol.LastIndexOf(','),1) + " where (" + _whereCol + ")";
                     break;
                 case Common.Basic.FormMode.newMode:
                     if (0 == Edited.Count)
@@ -222,7 +223,7 @@ namespace InvoiceConversion.Common
 
                         n++;
                     }
-                    _sql = @"INSERT INTO " + this.ToString() + " (" + _intoCol + ") VALUES(" + _intovaluesCol + ")";
+                    _sql = @"INSERT INTO " + this.ToString() + " (" + _intoCol.Remove(_intoCol.LastIndexOf(','),1) + ") VALUES(" + _intovaluesCol + ")";
                     break;
             }
 
@@ -315,7 +316,7 @@ namespace InvoiceConversion.Common
 
                     }
                     _sql = @"update " + this.ToString();
-                    _sql += string.IsNullOrEmpty(_setCol) ? _setCol : "\r\n set " + _setCol;
+                    _sql += string.IsNullOrEmpty(_setCol) ? _setCol : "\r\n set " + _setCol.Remove(_setCol.LastIndexOf(','), 1);
                     _sql += string.IsNullOrEmpty(_whereCol) ? _whereCol : "\r\n where (" + _whereCol + ")";
                     break;
                 case Common.Basic.FormMode.newMode:
@@ -362,7 +363,7 @@ namespace InvoiceConversion.Common
                         n++;
 
                     }
-                    _sql = @"INSERT INTO " + this.ToString() + " (" + _intoCol + ")\r\n VALUES(" + _intovaluesCol + ")";
+                    _sql = @"INSERT INTO " + this.ToString() + " (" + _intoCol.Remove(_intoCol.LastIndexOf(','), 1) + ")\r\n VALUES(" + _intovaluesCol + ")";
                     break;
             }
 

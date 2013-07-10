@@ -18,9 +18,11 @@ namespace InvoiceConversion
             get { return list_detail; }
             set { list_detail = value; }
         }
+        public Common.Basic.FormMode DataMode;
         public InCoFm()
         {
             InitializeComponent();
+            DataMode = Common.Basic.FormMode.newMode;
             this.customerBindingSource.DataSource = Common.MsSql.getCustmer();
             this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
             this.invoicedetailBindingSource.DataSource = List_detail;
@@ -87,7 +89,15 @@ namespace InvoiceConversion
 
         private void SaveBut_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("生成了新的發票");
+            Data.Invoice_master imaster = this.invoicemasterBindingSource.Current as Data.Invoice_master;
+            Data.InvoiceTitel title = this.title_combox.SelectedItem as Data.InvoiceTitel;
+            imaster.Remake = reme.Text;
+            imaster.Invoice_title_id = title.Company_id;
+            
+            string sql=imaster.GetSqlQuery(DataMode,String.Empty);
+            Common.MsSql.ExSql(sql, imaster.Parameter);
+
+            MessageBox.Show("生成了新的發票號："+imaster.Invoice_nmber);
             //保存
         }
 
@@ -112,6 +122,11 @@ namespace InvoiceConversion
 
             this.invoicemasterBindingSource.DataSource = Common.MsSql.getInvoice(custmer_text.Text, dateTimePicker1.Value, dateTimePicker2.Value);
             this.Cursor = Cursors.Default;
+        }
+
+        private void printBut_Click(object sender, EventArgs e)
+        {
+            //打印
         }
     }
 }

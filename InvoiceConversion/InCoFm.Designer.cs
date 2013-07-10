@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.printBut = new System.Windows.Forms.Button();
             this.custmer_text = new System.Windows.Forms.ComboBox();
             this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.invoiceNmber_text = new System.Windows.Forms.TextBox();
@@ -47,7 +48,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.reme = new System.Windows.Forms.TextBox();
             this.SaveBut = new System.Windows.Forms.Button();
             this.invoicemasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -73,6 +74,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.printBut);
             this.groupBox1.Controls.Add(this.custmer_text);
             this.groupBox1.Controls.Add(this.invoiceNmber_text);
             this.groupBox1.Controls.Add(this.label6);
@@ -92,6 +94,16 @@
             this.groupBox1.Size = new System.Drawing.Size(734, 113);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // printBut
+            // 
+            this.printBut.Location = new System.Drawing.Point(649, 15);
+            this.printBut.Name = "printBut";
+            this.printBut.Size = new System.Drawing.Size(75, 23);
+            this.printBut.TabIndex = 16;
+            this.printBut.Text = "列印";
+            this.printBut.UseVisualStyleBackColor = true;
+            this.printBut.Click += new System.EventHandler(this.printBut_Click);
             // 
             // custmer_text
             // 
@@ -129,7 +141,7 @@
             // 
             // manageBut
             // 
-            this.manageBut.Location = new System.Drawing.Point(689, 13);
+            this.manageBut.Location = new System.Drawing.Point(689, 45);
             this.manageBut.Name = "manageBut";
             this.manageBut.Size = new System.Drawing.Size(35, 23);
             this.manageBut.TabIndex = 11;
@@ -140,7 +152,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(396, 19);
+            this.label5.Location = new System.Drawing.Point(396, 51);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 10;
@@ -151,7 +163,7 @@
             this.title_combox.DataSource = this.invoiceTitelBindingSource;
             this.title_combox.DisplayMember = "Company_name";
             this.title_combox.FormattingEnabled = true;
-            this.title_combox.Location = new System.Drawing.Point(469, 16);
+            this.title_combox.Location = new System.Drawing.Point(469, 48);
             this.title_combox.Name = "title_combox";
             this.title_combox.Size = new System.Drawing.Size(214, 20);
             this.title_combox.TabIndex = 9;
@@ -244,15 +256,15 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "備註";
             // 
-            // textBox1
+            // reme
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.reme.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(47, 287);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(561, 53);
-            this.textBox1.TabIndex = 16;
+            this.reme.Location = new System.Drawing.Point(47, 287);
+            this.reme.Multiline = true;
+            this.reme.Name = "reme";
+            this.reme.Size = new System.Drawing.Size(561, 53);
+            this.reme.TabIndex = 16;
             // 
             // SaveBut
             // 
@@ -364,7 +376,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(740, 357);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.reme);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.SaveBut);
@@ -410,7 +422,7 @@
         private System.Windows.Forms.BindingSource customerBindingSource;
         private System.Windows.Forms.BindingSource invoiceTitelBindingSource;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox reme;
         private System.Windows.Forms.BindingSource invoicemasterBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn aInvoiceidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Item_name;
@@ -419,5 +431,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn unitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn qtyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remake;
+        private System.Windows.Forms.Button printBut;
     }
 }
