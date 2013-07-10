@@ -19,13 +19,13 @@ namespace InvoiceConversion
         {
             if (this.textBox1.Text == string.Empty)
             {
-                MessageBox.Show("输入用户名");
+                MessageBox.Show("輸入用戶名！");
                 this.textBox1.Focus();
                 return;
             }
             if (this.textBox2.Text == string.Empty)
             {
-                MessageBox.Show("输入密码!");
+                MessageBox.Show("輸入密碼！");
                 this.textBox2.Focus();
                 return;
             }
@@ -37,7 +37,7 @@ namespace InvoiceConversion
             }
             else
             {
-                MessageBox.Show("登录失败\n\r原因："+loging.Error);
+                MessageBox.Show("登錄失敗\n\r原因："+loging.Error);
             }
         }
 
