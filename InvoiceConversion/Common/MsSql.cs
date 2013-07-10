@@ -97,6 +97,7 @@ namespace InvoiceConversion.Common
                     {
                         Data.Invoice_master idetail = new Data.Invoice_master();
                         idetail.BeginEdit();
+                        idetail.Last_update = DateTime.Now;
                         idetail.Ainvoice_id = MsSql.ToString(reader["AInvoice_ID"]);
                         idetail.Client_id = reader["Client_ID"].ToString();
                         idetail.Client_name = reader["Client_N"].ToString();
@@ -168,6 +169,13 @@ namespace InvoiceConversion.Common
             return dids; 
         }
 
+        public static List<Data.Invoice_master> SearchInvoice()
+        {
+            List<Data.Invoice_master> invoice = new List<Data.Invoice_master>();
+            
+            return invoice;
+        }
+
         public static List<Data.InvoiceTitel> getTitle()
         {
             List<Data.InvoiceTitel> lc = new List<Data.InvoiceTitel>();
@@ -230,6 +238,54 @@ namespace InvoiceConversion.Common
                     conn.Close();
                 }
 
+            }
+            return r;
+        }
+
+        public static bool ExcMulSql(string[] sqls,object[] objs)
+        {
+            bool r = false;
+            System.Data.SqlClient.SqlCommand[] cmds = new System.Data.SqlClient.SqlCommand[sqls.Length];
+            using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)
+            {
+                conn.Open();
+                using (System.Data.SqlClient.SqlTransaction tarn = conn.BeginTransaction())
+                {
+                    for (int i = 0; i < sqls.Length; i++)
+                    {
+                        string sql = sqls[i];
+                        System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+                        cmd.CommandText = sql;
+                        cmd.Connection = conn;
+                        cmd.Transaction = tarn;
+                        object[] _pars = objs[i] as object[];
+                        for (int n = 0; n < _pars.Length; n++)
+                        {
+                            if (n % 2 == 0)
+                            {
+                                int m = n + 1;
+                                System.Data.SqlClient.SqlParameter par = new System.Data.SqlClient.SqlParameter(_pars[n].ToString(), _pars[m]);
+                                cmd.Parameters.Add(par);
+                            }
+                        }
+                        cmds[i] = cmd;
+                    }
+                    try
+                    {
+                        foreach (System.Data.SqlClient.SqlCommand cmd in cmds)
+                        {
+                            r = cmd.ExecuteNonQuery() > 0;
+                        }
+                        tarn.Commit();
+                    }
+                    catch {
+                        tarn.Rollback();
+                    }
+                    finally
+                    {                        
+                        conn.Close();
+                    }
+                }
             }
             return r;
         }

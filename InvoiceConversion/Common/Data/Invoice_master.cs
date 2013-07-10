@@ -11,6 +11,25 @@ namespace InvoiceConversion.Data
         {
             return "Invoice_master";
         }
+        private DateTime last_update;
+
+        public DateTime Last_update
+        {
+            get { return last_update; }
+            set
+            {
+                if (last_update != value)
+                {
+                    if (InEdit)
+                    {
+                        SaveState("last_update", last_update);
+                        SaveData("last_update", value);
+                    }
+                    last_update = value;
+                    OnPropertyChanged("last_update");
+                }
+            }
+        }
         private string client_id;
 
         public string Client_id

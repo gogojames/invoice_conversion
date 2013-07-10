@@ -95,12 +95,28 @@ namespace InvoiceConversion
             imaster.Invoice_title_id = title.Company_id;
             
             string sql=imaster.GetSqlQuery(DataMode,String.Empty);
-            Common.MsSql.ExSql(sql, imaster.Parameter);
+            //Common.MsSql.ExSql(sql, imaster.Parameter);
+            string[] sqls = new string[List_detail.Count+1];
+            object[] objs = new object[List_detail.Count+1];
+            int i=0;
+            sqls[i] = sql;
+            objs[i] = imaster.Parameter;
             foreach (Data.Invoice_detail d in this.List_detail)
             {
-                Common.MsSql.ExSql(d.GetSqlQuery(DataMode, string.Empty), d.Parameter);
+                i++;
+                d.Invoice_nmber = imaster.Invoice_nmber;
+                sqls[i]=d.GetSqlQuery(DataMode, string.Empty);
+                objs[i] = d.Parameter;
+                
             }
-            MessageBox.Show("生成了新的發票號："+imaster.Invoice_nmber);
+            if (Common.MsSql.ExcMulSql(sqls, objs))
+            {
+                MessageBox.Show("生成了新的發票號：" + imaster.Invoice_nmber);
+            }
+            else
+            {
+                MessageBox.Show("生成了新的發票失敗");
+            }
             //保存
         }
 

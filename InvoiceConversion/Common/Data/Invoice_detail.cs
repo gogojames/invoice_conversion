@@ -11,6 +11,44 @@ namespace InvoiceConversion.Data
         {
             return "Invoice_detail";
         }
+        private int detail_id;
+
+        public int Detail_id
+        {
+            get { return detail_id; }
+            set {
+                if (detail_id != value)
+                {
+                    if (InEdit)
+                    {
+                        SaveState("detail_id", detail_id);
+                        SaveData("detail_id", value);
+                    }
+                    detail_id = value;
+                    OnPropertyChanged("detail_id");
+                }
+
+                }
+        }
+        private string invoice_nmber;
+
+        public string Invoice_nmber
+        {
+            get { return invoice_nmber; }
+            set
+            {
+                if (invoice_nmber != value)
+                {
+                    if (InEdit)
+                    {
+                        SaveState("invoice_nmber", invoice_nmber);
+                        SaveData("invoice_nmber", value);
+                    }
+                    invoice_nmber = value;
+                    OnPropertyChanged("invoice_nmber");
+                }
+            }
+        }
         private string aInvoice_id;
 
         public string AInvoice_id
