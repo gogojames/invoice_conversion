@@ -223,7 +223,7 @@ namespace InvoiceConversion.Common
 
                         n++;
                     }
-                    _sql = @"INSERT INTO " + this.ToString() + " (" + _intoCol.Remove(_intoCol.LastIndexOf(','),1) + ") VALUES(" + _intovaluesCol + ")";
+                    _sql = @"INSERT INTO " + this.ToString() + " (" + _intoCol + ") VALUES(" + _intovaluesCol + ")";
                     break;
             }
 
@@ -363,7 +363,7 @@ namespace InvoiceConversion.Common
                         n++;
 
                     }
-                    _sql = @"INSERT INTO " + this.ToString() + " (" + _intoCol.Remove(_intoCol.LastIndexOf(','), 1) + ")\r\n VALUES(" + _intovaluesCol + ")";
+                    _sql = @"INSERT INTO " + this.ToString() + " (" + _intoCol + ")\r\n VALUES(" + _intovaluesCol + ")";
                     break;
             }
 

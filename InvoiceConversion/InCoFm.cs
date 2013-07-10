@@ -96,7 +96,10 @@ namespace InvoiceConversion
             
             string sql=imaster.GetSqlQuery(DataMode,String.Empty);
             Common.MsSql.ExSql(sql, imaster.Parameter);
-
+            foreach (Data.Invoice_detail d in this.List_detail)
+            {
+                Common.MsSql.ExSql(d.GetSqlQuery(DataMode, string.Empty), d.Parameter);
+            }
             MessageBox.Show("生成了新的發票號："+imaster.Invoice_nmber);
             //保存
         }
