@@ -39,5 +39,15 @@ namespace InvoiceConversion
                 icf.Show();
             }
         }
+
+        private void printMe_Click(object sender, EventArgs e)
+        {
+            if (closeMdiChildren())
+            {
+                PrInFm icf = new PrInFm();
+                icf.MdiParent = this;
+                icf.Show();
+            }
+        }
     }
 }

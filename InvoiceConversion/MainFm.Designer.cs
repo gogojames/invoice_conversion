@@ -33,6 +33,7 @@
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.invoiceMe = new System.Windows.Forms.ToolStripMenuItem();
             this.colseMe = new System.Windows.Forms.ToolStripMenuItem();
+            this.printMe = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +52,7 @@
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.invoiceMe,
+            this.printMe,
             this.colseMe});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -71,6 +73,13 @@
             this.colseMe.Size = new System.Drawing.Size(152, 22);
             this.colseMe.Text = "退出";
             this.colseMe.Click += new System.EventHandler(this.colseMe_Click);
+            // 
+            // printMe
+            // 
+            this.printMe.Name = "printMe";
+            this.printMe.Size = new System.Drawing.Size(152, 22);
+            this.printMe.Text = "列印";
+            this.printMe.Click += new System.EventHandler(this.printMe_Click);
             // 
             // MainFm
             // 
@@ -95,6 +104,7 @@
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem invoiceMe;
         private System.Windows.Forms.ToolStripMenuItem colseMe;
+        private System.Windows.Forms.ToolStripMenuItem printMe;
     }
 }
 
