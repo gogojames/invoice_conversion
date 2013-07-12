@@ -50,6 +50,10 @@
           <DataField>Invoice_title_id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="Last_update">
+          <DataField>Last_update</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="Parameter">
           <DataField>Parameter</DataField>
           <rd:TypeName>System.Object[]</rd:TypeName>
@@ -90,6 +94,10 @@
         <Field Name="Item_name">
           <DataField>Item_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Money">
+          <DataField>Money</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
         </Field>
         <Field Name="Parameter">
           <DataField>Parameter</DataField>
@@ -201,7 +209,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Item name</Value>
+                              <Value>物品名稱</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -231,7 +239,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Price</Value>
+                              <Value>單價</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -261,7 +269,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Qty</Value>
+                              <Value>數量</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -291,7 +299,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Unit</Value>
+                              <Value>位單</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -321,7 +329,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Remake</Value>
+                              <Value>說明</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -351,7 +359,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>金額</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -529,21 +537,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox24">
+                    <Textbox Name="Money">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Fields!Money.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox24</rd:DefaultName>
+                      <rd:DefaultName>Money</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -584,8 +592,8 @@
         <DataSetName>indetail</DataSetName>
         <Top>0.17639cm</Top>
         <Left>0.38841cm</Left>
-        <Height>0.93542cm</Height>
-        <Width>16.69333cm</Width>
+        <Height>0.93543cm</Height>
+        <Width>16.69334cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -593,13 +601,13 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>0.4898in</Height>
+    <Height>0.45855in</Height>
     <Style />
   </Body>
   <Width>6.7251in</Width>
   <Page>
     <PageHeader>
-      <Height>2.06846cm</Height>
+      <Height>2.57591cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -614,14 +622,16 @@
                   <Style />
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox12</rd:DefaultName>
-          <Top>0.05327cm</Top>
+          <Top>0.37077cm</Top>
           <Left>0.38841cm</Left>
           <Height>0.6cm</Height>
-          <Width>10.755cm</Width>
+          <Width>16.39063cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -639,7 +649,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Address:</Value>
+                  <Value>地址:</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -649,7 +659,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox13</rd:DefaultName>
-          <Top>0.7591cm</Top>
+          <Top>1.0766cm</Top>
           <Left>0.38841cm</Left>
           <Height>0.6cm</Height>
           <Width>1.72354cm</Width>
@@ -679,7 +689,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>0.76263cm</Top>
+          <Top>1.08013cm</Top>
           <Left>2.21072cm</Left>
           <Height>0.6cm</Height>
           <Width>8.85cm</Width>
@@ -701,7 +711,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Tel:</Value>
+                  <Value>電話:</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -711,7 +721,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
-          <Top>1.46846cm</Top>
+          <Top>1.78596cm</Top>
           <Left>0.38841cm</Left>
           <Height>0.6cm</Height>
           <Width>1.72354cm</Width>
@@ -741,11 +751,133 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox16</rd:DefaultName>
-          <Top>1.42966cm</Top>
+          <Top>1.74716cm</Top>
           <Left>2.21072cm</Left>
           <Height>0.6cm</Height>
           <Width>8.85cm</Width>
           <ZIndex>4</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>發票編號</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>1.11215cm</Top>
+          <Left>11.23711cm</Left>
+          <Height>0.6cm</Height>
+          <Width>1.60042cm</Width>
+          <ZIndex>5</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Invoice_nmber.Value, "inmaster")</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>1.11215cm</Top>
+          <Left>13.01391cm</Left>
+          <Height>0.6cm</Height>
+          <Width>3.76512cm</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox6">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>日期</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox6</rd:DefaultName>
+          <Top>1.78596cm</Top>
+          <Left>11.23711cm</Left>
+          <Height>0.6cm</Height>
+          <Width>1.60042cm</Width>
+          <ZIndex>7</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox7">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Invoice_date.Value, "inmaster")</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox7</rd:DefaultName>
+          <Top>1.78596cm</Top>
+          <Left>13.01391cm</Left>
+          <Height>0.6cm</Height>
+          <Width>3.76512cm</Width>
+          <ZIndex>8</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -764,7 +896,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>4.11014cm</Height>
+      <Height>3.66035cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -783,7 +915,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>TotalPages</rd:DefaultName>
-          <Top>3.26292cm</Top>
+          <Top>2.81842cm</Top>
           <Left>7.34695cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>
@@ -804,7 +936,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>Remake</Value>
+                  <Value>備註</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
@@ -812,7 +944,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox25</rd:DefaultName>
-          <Top>0.13257cm</Top>
+          <Top>0.17258cm</Top>
           <Left>0.38841cm</Left>
           <Height>0.6cm</Height>
           <Width>1.72354cm</Width>
@@ -842,7 +974,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox26</rd:DefaultName>
-          <Top>1.07597cm</Top>
+          <Top>0.94897cm</Top>
           <Left>0.38841cm</Left>
           <Height>1.63187cm</Height>
           <Width>15.54396cm</Width>
@@ -855,6 +987,71 @@
             <PaddingRight>2pt</PaddingRight>
             <PaddingTop>2pt</PaddingTop>
             <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox8">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>总金额:</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox8</rd:DefaultName>
+          <Top>0.17639cm</Top>
+          <Left>11.23711cm</Left>
+          <Height>0.6cm</Height>
+          <Width>1.60042cm</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox9">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Sum(Fields!Money.Value, "indetail")</Value>
+                  <Style>
+                    <Format>'¥'#,0.00;('¥'#,0.00)</Format>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox9</rd:DefaultName>
+          <Top>0.17258cm</Top>
+          <Left>13.01391cm</Left>
+          <Height>0.6cm</Height>
+          <Width>3.76512cm</Width>
+          <ZIndex>4</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+            <rd:FormatSymbolCulture>zh-CN</rd:FormatSymbolCulture>
           </Style>
         </Textbox>
       </ReportItems>

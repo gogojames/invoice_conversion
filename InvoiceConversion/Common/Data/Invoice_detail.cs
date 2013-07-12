@@ -179,5 +179,15 @@ namespace InvoiceConversion.Data
             }
         }
 
+        private double money;
+
+        public double Money
+        {
+            get {
+                money = this.Rpice * this.Qty;
+                return money; }
+            private set { money = value; }
+        }
+
     }
 }
