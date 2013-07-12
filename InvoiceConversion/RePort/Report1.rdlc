@@ -178,22 +178,22 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.16481in</Width>
+              <Width>2.47905in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.72731in</Width>
+              <Width>1.04155in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.72731in</Width>
+              <Width>1.04155in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.98425in</Width>
+              <Width>1.29849in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.98425in</Width>
+              <Width>1.29849in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>0.98425in</Width>
+              <Width>1.29849in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -210,7 +210,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>物品名稱</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -240,7 +242,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>單價</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -270,7 +274,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>數量</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -300,7 +306,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>位單</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -330,7 +338,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>說明</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -360,7 +370,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>金額</Value>
-                              <Style />
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -590,10 +602,19 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>indetail</DataSetName>
+        <Filters>
+          <Filter>
+            <FilterExpression>=Fields!Money.Value</FilterExpression>
+            <Operator>GreaterThan</Operator>
+            <FilterValues>
+              <FilterValue DataType="Float">0</FilterValue>
+            </FilterValues>
+          </Filter>
+        </Filters>
         <Top>0.17639cm</Top>
         <Left>0.38841cm</Left>
         <Height>0.93543cm</Height>
-        <Width>16.69334cm</Width>
+        <Width>21.4823cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -604,10 +625,10 @@
     <Height>0.45855in</Height>
     <Style />
   </Body>
-  <Width>6.7251in</Width>
+  <Width>8.73552in</Width>
   <Page>
     <PageHeader>
-      <Height>2.57591cm</Height>
+      <Height>3.23737cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -619,7 +640,10 @@
               <TextRuns>
                 <TextRun>
                   <Value>=First(Fields!Company_name.Value, "intitel")</Value>
-                  <Style />
+                  <Style>
+                    <FontSize>16pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -630,8 +654,8 @@
           <rd:DefaultName>Textbox12</rd:DefaultName>
           <Top>0.37077cm</Top>
           <Left>0.38841cm</Left>
-          <Height>0.6cm</Height>
-          <Width>16.39063cm</Width>
+          <Height>0.97042cm</Height>
+          <Width>21.4823cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -650,7 +674,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>地址:</Value>
-                  <Style />
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -659,7 +685,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox13</rd:DefaultName>
-          <Top>1.0766cm</Top>
+          <Top>1.80685cm</Top>
           <Left>0.38841cm</Left>
           <Height>0.6cm</Height>
           <Width>1.72354cm</Width>
@@ -685,11 +711,13 @@
                   <Style />
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
-          <Top>1.08013cm</Top>
+          <Top>1.81038cm</Top>
           <Left>2.21072cm</Left>
           <Height>0.6cm</Height>
           <Width>8.85cm</Width>
@@ -712,7 +740,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>電話:</Value>
-                  <Style />
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -721,7 +751,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox15</rd:DefaultName>
-          <Top>1.78596cm</Top>
+          <Top>2.51621cm</Top>
           <Left>0.38841cm</Left>
           <Height>0.6cm</Height>
           <Width>1.72354cm</Width>
@@ -747,11 +777,13 @@
                   <Style />
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox16</rd:DefaultName>
-          <Top>1.74716cm</Top>
+          <Top>2.47741cm</Top>
           <Left>2.21072cm</Left>
           <Height>0.6cm</Height>
           <Width>8.85cm</Width>
@@ -774,17 +806,21 @@
               <TextRuns>
                 <TextRun>
                   <Value>發票編號</Value>
-                  <Style />
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>1.11215cm</Top>
-          <Left>11.23711cm</Left>
+          <Top>1.8424cm</Top>
+          <Left>13.98878cm</Left>
           <Height>0.6cm</Height>
-          <Width>1.60042cm</Width>
+          <Width>2.02375cm</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
@@ -807,14 +843,16 @@
                   <Style />
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
-          <Top>1.11215cm</Top>
-          <Left>13.01391cm</Left>
+          <Top>1.8424cm</Top>
+          <Left>16.18891cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.76512cm</Width>
+          <Width>5.6818cm</Width>
           <ZIndex>6</ZIndex>
           <Style>
             <Border>
@@ -834,7 +872,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>日期</Value>
-                  <Style />
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -843,8 +883,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox6</rd:DefaultName>
-          <Top>1.78596cm</Top>
-          <Left>11.23711cm</Left>
+          <Top>2.51621cm</Top>
+          <Left>14.41211cm</Left>
           <Height>0.6cm</Height>
           <Width>1.60042cm</Width>
           <ZIndex>7</ZIndex>
@@ -869,14 +909,16 @@
                   <Style />
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox7</rd:DefaultName>
-          <Top>1.78596cm</Top>
-          <Left>13.01391cm</Left>
+          <Top>2.49626cm</Top>
+          <Left>16.18891cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.76512cm</Width>
+          <Width>5.6818cm</Width>
           <ZIndex>8</ZIndex>
           <Style>
             <Border>
@@ -916,7 +958,7 @@
           </Paragraphs>
           <rd:DefaultName>TotalPages</rd:DefaultName>
           <Top>2.81842cm</Top>
-          <Left>7.34695cm</Left>
+          <Left>9.88695cm</Left>
           <Height>0.6cm</Height>
           <Width>2.5cm</Width>
           <Style>
@@ -937,7 +979,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>備註</Value>
-                  <Style />
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -970,14 +1014,16 @@
                   <Style />
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox26</rd:DefaultName>
           <Top>0.94897cm</Top>
           <Left>0.38841cm</Left>
           <Height>1.63187cm</Height>
-          <Width>15.54396cm</Width>
+          <Width>21.4823cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -997,7 +1043,9 @@
               <TextRuns>
                 <TextRun>
                   <Value>总金额:</Value>
-                  <Style />
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style>
@@ -1007,7 +1055,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox8</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>11.23711cm</Left>
+          <Left>14.41211cm</Left>
           <Height>0.6cm</Height>
           <Width>1.60042cm</Width>
           <ZIndex>3</ZIndex>
@@ -1034,14 +1082,16 @@
                   </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox9</rd:DefaultName>
           <Top>0.17258cm</Top>
-          <Left>13.01391cm</Left>
+          <Left>16.18891cm</Left>
           <Height>0.6cm</Height>
-          <Width>3.76512cm</Width>
+          <Width>5.6818cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>

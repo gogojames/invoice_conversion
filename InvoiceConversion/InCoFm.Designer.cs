@@ -128,6 +128,7 @@
             this.invoiceNmber_text.Name = "invoiceNmber_text";
             this.invoiceNmber_text.Size = new System.Drawing.Size(90, 21);
             this.invoiceNmber_text.TabIndex = 14;
+            this.invoiceNmber_text.Visible = false;
             // 
             // label6
             // 
@@ -138,6 +139,7 @@
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 13;
             this.label6.Text = "發票編號";
+            this.label6.Visible = false;
             // 
             // manageBut
             // 

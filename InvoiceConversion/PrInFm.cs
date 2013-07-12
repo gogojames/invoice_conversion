@@ -81,6 +81,7 @@ namespace InvoiceConversion
             string w  = " where Invoice_nmber= @Invoice_nmber ";
             
             List<Data.Invoice_detail> list_d = new List<Data.Invoice_detail>();
+            if (string.IsNullOrEmpty(inm)) return list_d;
             using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)
             {
                 Data.Invoice_detail  m = new Data.Invoice_detail();

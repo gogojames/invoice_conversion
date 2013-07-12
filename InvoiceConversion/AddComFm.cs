@@ -11,12 +11,25 @@ namespace InvoiceConversion
     public partial class AddComFm : Form
     {
         public Common.Basic.FormMode DataMode;
+        public Data.InvoiceTitel SelectTitle;
         public AddComFm()
         {
             InitializeComponent();
             this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
+            this.listBox1.DoubleClick += new EventHandler(listBox1_DoubleClick);
             //this.invoiceTitelBindingSource1.DataSource = newone();
             button1.Click += new EventHandler(button1_Click);
+        }
+
+        void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            var t = listBox1.SelectedItem as Data.InvoiceTitel;
+            if (t != null)
+            {
+                SelectTitle = t;
+                this.DialogResult = DialogResult.OK;
+            }
+            
         }
 
         private object newone()

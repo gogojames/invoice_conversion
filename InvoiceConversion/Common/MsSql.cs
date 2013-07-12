@@ -254,6 +254,7 @@ namespace InvoiceConversion.Common
                     for (int i = 0; i < sqls.Length; i++)
                     {
                         string sql = sqls[i];
+                        System.Diagnostics.Debug.WriteLine(sql);
                         System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
                         cmd.CommandText = sql;
                         cmd.Connection = conn;
@@ -277,9 +278,11 @@ namespace InvoiceConversion.Common
                             r = cmd.ExecuteNonQuery() > 0;
                         }
                         tarn.Commit();
+                        r = true;
                     }
                     catch {
                         tarn.Rollback();
+                        r = false;
                     }
                     finally
                     {                        

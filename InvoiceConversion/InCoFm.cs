@@ -22,12 +22,53 @@ namespace InvoiceConversion
         public InCoFm()
         {
             InitializeComponent();
+            this.printBut.Enabled = false;
+            this.SaveBut.Enabled = false;
             DataMode = Common.Basic.FormMode.newMode;
+            dataGridView1.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+            this.invoicedetailBindingSource.DataError += new BindingManagerDataErrorEventHandler(invoicedetailBindingSource_DataError);
+            this.invoicemasterBindingSource.DataError += new BindingManagerDataErrorEventHandler(invoicemasterBindingSource_DataError);
+            this.dataGridView1.DataError += new DataGridViewDataErrorEventHandler(dataGridView1_DataError);
             this.customerBindingSource.DataSource = Common.MsSql.getCustmer();
             this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
             this.invoicedetailBindingSource.DataSource = List_detail;
             this.invoicemasterBindingSource.CurrentChanged += new EventHandler(invoicemasterBindingSource_CurrentChanged);
 
+        }
+
+        void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            // MessageBox.Show(e.Exception.Message);
+            e.Cancel = true;
+            var d = sender as DataGridView;
+            
+                d.AllowUserToDeleteRows = true;
+          
+                d.Rows.Clear();
+                d.AllowUserToDeleteRows = false;
+            
+        }
+
+        void invoicemasterBindingSource_DataError(object sender, BindingManagerDataErrorEventArgs e)
+        {
+            var obj = sender as BindingSource;
+            //if (e.Exception.GetHashCode() != 0)
+           // {
+                
+                MessageBox.Show(e.Exception.Message);
+                e.Exception.Data.Clear();
+           // }
+        }
+
+        void invoicedetailBindingSource_DataError(object sender, BindingManagerDataErrorEventArgs e)
+        {
+            var obj = sender as BindingSource;
+           // if (e.Exception.GetHashCode() != 0)
+            //{
+               
+                MessageBox.Show(e.Exception.Message);
+                e.Exception.Data.Clear();
+           // }
         }
 
         void invoicemasterBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -43,13 +84,26 @@ namespace InvoiceConversion
                 {
                     //this.invoicedetailBindingSource.DataSource=typeof( Data.Invoice_detail);
                     List_detail.Clear();
+                    dataGridView1.AllowUserToDeleteRows = true;
+
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.AllowUserToDeleteRows = false;
                 }
             }
             else
             {
                 List_detail = Common.MsSql.getInvoiceDetail(currim.Client_name, dateTimePicker1.Value, dateTimePicker2.Value);
             }
+            if (List_detail.Count == 0)
+            {
+                dataGridView1.AllowUserToDeleteRows = true;
+
+                dataGridView1.Rows.Clear();
+                dataGridView1.AllowUserToDeleteRows = false;
+            }
             this.invoicedetailBindingSource.DataSource = List_detail;
+            this.SaveBut.Enabled = this.invoicemasterBindingSource.Count > 0 && this.invoicedetailBindingSource.Count > 0;
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -61,7 +115,22 @@ namespace InvoiceConversion
         {
             //管理发票 标题
             AddComFm acf = new AddComFm();
-            acf.ShowDialog();
+           DialogResult d=acf.ShowDialog();
+           if (d == DialogResult.OK)
+           {
+               bool s=false;
+               foreach (Data.InvoiceTitel l in title_combox.Items)
+               {
+                   s = (acf.SelectTitle.Company_id == l.Company_id);
+                   if (s) break;
+                   
+               }
+               if (!s)
+               {
+                   this.invoiceTitelBindingSource.Add(acf.SelectTitle);
+               }
+               title_combox.SelectedItem = acf.SelectTitle;
+           }
         }
 
         private void msleBut_Click(object sender, EventArgs e)
@@ -74,6 +143,7 @@ namespace InvoiceConversion
             for(int i =0;i<dataGridView1.RowCount;i++)
             {
                 var dv = dataGridView1.Rows[i];
+                if (dv.Cells[3].Value == null) continue;
                 double p;
                 double.TryParse(dv.Cells[3].Value.ToString(), out p);
 
@@ -111,11 +181,14 @@ namespace InvoiceConversion
             }
             if (Common.MsSql.ExcMulSql(sqls, objs))
             {
-                MessageBox.Show("生成了新的發票號：" + imaster.Invoice_nmber);
+                MessageBox.Show("生成了新的發票號", imaster.Invoice_nmber);
+                this.printBut.Enabled = true;
+                this.SaveBut.Enabled = false;
             }
             else
             {
-                MessageBox.Show("生成了新的發票失敗");
+                MessageBox.Show("生成了新的發票失敗","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                this.printBut.Enabled = false;
             }
             //保存
         }
@@ -146,6 +219,7 @@ namespace InvoiceConversion
         private void printBut_Click(object sender, EventArgs e)
         {
             //打印
+
         }
     }
 }

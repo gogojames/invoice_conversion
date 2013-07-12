@@ -14,11 +14,23 @@ namespace InvoiceConversion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
             LoginFm login = new LoginFm();
             DialogResult dr = login.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                Application.Run(new MainFm());
+                try
+                {
+                    Application.Run(new MainFm());
+                }
+                catch {
+                    MessageBox.Show("抱歉，系統發生意外退出重啟！","錯誤",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    Application.Run(new MainFm());
+                }
+                
             }
             else
             {
