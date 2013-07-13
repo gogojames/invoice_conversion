@@ -25,10 +25,10 @@ namespace InvoiceConversion
             this.printBut.Enabled = false;
             this.SaveBut.Enabled = false;
             DataMode = Common.Basic.FormMode.newMode;
+            this.dataGridView1.DataError += new DataGridViewDataErrorEventHandler(dataGridView1_DataError);
             dataGridView1.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             this.invoicedetailBindingSource.DataError += new BindingManagerDataErrorEventHandler(invoicedetailBindingSource_DataError);
             this.invoicemasterBindingSource.DataError += new BindingManagerDataErrorEventHandler(invoicemasterBindingSource_DataError);
-            this.dataGridView1.DataError += new DataGridViewDataErrorEventHandler(dataGridView1_DataError);
             this.customerBindingSource.DataSource = Common.MsSql.getCustmer();
             this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
             this.invoicedetailBindingSource.DataSource = List_detail;
@@ -41,12 +41,15 @@ namespace InvoiceConversion
             // MessageBox.Show(e.Exception.Message);
             
             var d = sender as DataGridView;
-            if (string.IsNullOrEmpty(e.Exception.Message))
-                return;
-            e.Cancel = true;
-            d.AllowUserToDeleteRows = true;
-            d.Rows.Clear();
-            d.AllowUserToDeleteRows = false;
+           // System.Diagnostics.Debug.WriteLine(d.Rows[e.RowIndex].Cells[7].Value);
+            if (!string.IsNullOrEmpty(e.Exception.Message))
+            {
+                //MessageBox.Show(e.Exception.Message);
+                e.Cancel = true;
+                d.AllowUserToDeleteRows = true;
+                d.Rows.Clear();
+                d.AllowUserToDeleteRows = false;
+            }
             
         }
 
@@ -178,21 +181,22 @@ namespace InvoiceConversion
             foreach (Data.Invoice_detail d in this.List_detail)
             {
                 i++;
+                d.BeginEdit();
                 d.Invoice_nmber = imaster.Invoice_nmber;
-                System.Diagnostics.Debug.WriteLine(imaster.Invoice_nmber);
+                System.Diagnostics.Debug.WriteLine(d.Invoice_nmber);
                 sqls[i]=d.GetSqlQuery(DataMode, string.Empty);
                 objs[i] = d.Parameter;
                 
             }
             if (Common.MsSql.ExcMulSql(sqls, objs))
             {
-                MessageBox.Show("生成了新的發票號", imaster.Invoice_nmber);
+                MessageBox.Show("生成了新的發票號:" + imaster.Invoice_nmber, "發票",MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.printBut.Enabled = true;
                 this.SaveBut.Enabled = false;
             }
             else
             {
-                MessageBox.Show("生成了新的發票失敗","提示",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("生成了新的發票失敗","提示",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 this.printBut.Enabled = false;
             }
             //保存
