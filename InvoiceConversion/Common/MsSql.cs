@@ -102,7 +102,7 @@ namespace InvoiceConversion.Common
                         idetail.Client_id = reader["Client_ID"].ToString();
                         idetail.Client_name = reader["Client_N"].ToString();
                         idetail.Invoice_date = DateTime.Parse(reader["Invoice_Date"].ToString());
-                        idetail.Invoice_nmber = Guid.NewGuid().ToString();
+                        idetail.Invoice_nmber = string.Empty;
                         idetail.Invoice_title_id = 0;
                         idetail.Remake = reader["Meno"].ToString();
                         li.Add(idetail);
@@ -280,9 +280,10 @@ namespace InvoiceConversion.Common
                         tarn.Commit();
                         r = true;
                     }
-                    catch {
+                    catch(Exception e) {
                         tarn.Rollback();
                         r = false;
+                        throw e;
                     }
                     finally
                     {                        
@@ -325,6 +326,58 @@ namespace InvoiceConversion.Common
 
             }
             return lc;
+        }
+        //new_invoice
+        /*SELECT doc_next_no
+        FROM dbo.doc_no
+        WHERE (doc_no = 'new_invoice')*/
+        public static string Next_No()
+        {
+            string no = string.Empty;
+            using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)
+            {
+                string sql = "SELECT doc_next_no      FROM doc_no        WHERE (doc_no = 'new_invoice')";
+                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+                cmd.CommandText = sql;
+                cmd.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    System.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        no = reader["doc_next_no"].ToString();
+                    }
+                    StringBuilder new_no = new StringBuilder();
+                    var tmp = new StringBuilder();
+                    var _int = no.TrimStart(new char[] { 'N' });
+                    int n_int = 0;
+                    int.TryParse(_int, out n_int);
+                    n_int++;
+                    foreach (char c in no.ToCharArray())
+                    {
+                        if (c == 78 || c == 48)
+                        {
+                            new_no.Append(c.ToString());
+                            tmp.Append(c.ToString());
+                        }
+                    }
+                    tmp.Append(n_int.ToString());
+                    int di = tmp.Length - no.Length;
+                    if (di>0)
+                    {
+                       new_no = new_no.Remove(new_no.Length - di, di-1);
+                    }
+                    new_no.Append(n_int.ToString());
+                    MsSql.ExSql("UPDATE doc_no SET doc_next_no =@doc_next_no WHERE (doc_no = 'new_invoice') ", new object[] { "@doc_next_no", new_no.ToString() });
+                }
+                finally
+                {
+                    conn.Close();
+                }
+
+            }
+            return no;
         }
 
         public static string ToString(object obj)

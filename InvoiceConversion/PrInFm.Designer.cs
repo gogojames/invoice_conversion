@@ -42,9 +42,9 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.reportViewer1.Location = new System.Drawing.Point(-1, 52);
+            this.reportViewer1.Location = new System.Drawing.Point(5, 42);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(873, 419);
+            this.reportViewer1.Size = new System.Drawing.Size(873, 425);
             this.reportViewer1.TabIndex = 1;
             // 
             // button1
@@ -70,6 +70,7 @@
             // 
             this.comboBox1.DataSource = this.invoiceTitelBindingSource;
             this.comboBox1.DisplayMember = "Company_name";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(72, 13);
             this.comboBox1.Name = "comboBox1";

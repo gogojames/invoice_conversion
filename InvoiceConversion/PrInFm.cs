@@ -17,14 +17,22 @@ namespace InvoiceConversion
             this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
         }
 
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "InvoiceConversion.RePort.Report1.rdlc";
             this.reportViewer1.LocalReport.DataSources.Clear();
-            var data =new List<Data.Invoice_master>();
-           
-            var intitel = new List<Data.InvoiceTitel>();
             var title = this.comboBox1.SelectedItem as Data.InvoiceTitel;
+            Preview(title);
+        }
+
+        public void Preview(Data.InvoiceTitel title)
+        {
+            var data = new List<Data.Invoice_master>();
+
+            var intitel = new List<Data.InvoiceTitel>();
+            
             var m = getMaster(title.Company_id);
             data.Add(m);
             var indetail = getMasterDetail(m.Invoice_nmber);
@@ -32,7 +40,7 @@ namespace InvoiceConversion
             this.reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("inmaster", data));
             this.reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("indetail", indetail));
             this.reportViewer1.LocalReport.DataSources.Add(new Microsoft.Reporting.WinForms.ReportDataSource("intitel", intitel));
-           // this.reportViewer1.LocalReport.SetParameters(new Microsoft.Reporting.WinForms.ReportParameter("customerName", dr.customer.Cname));
+            // this.reportViewer1.LocalReport.SetParameters(new Microsoft.Reporting.WinForms.ReportParameter("customerName", dr.customer.Cname));
             this.reportViewer1.RefreshReport();
         }
 

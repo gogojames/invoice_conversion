@@ -162,6 +162,7 @@ namespace InvoiceConversion
             Data.Invoice_master imaster = this.invoicemasterBindingSource.Current as Data.Invoice_master;
             Data.InvoiceTitel title = this.title_combox.SelectedItem as Data.InvoiceTitel;
             imaster.Remake = reme.Text;
+            imaster.Invoice_nmber = Common.MsSql.Next_No();
             imaster.Invoice_title_id = title.Company_id;
             
             string sql=imaster.GetSqlQuery(DataMode,String.Empty);
@@ -219,7 +220,10 @@ namespace InvoiceConversion
         private void printBut_Click(object sender, EventArgs e)
         {
             //打印
-
+            var t = this.invoiceTitelBindingSource.Current as Data.InvoiceTitel;
+            PrInFm pf = new PrInFm();
+            pf.Preview(t);
+            pf.ShowDialog();
         }
     }
 }

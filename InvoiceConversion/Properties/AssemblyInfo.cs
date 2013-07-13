@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("InvoiceConversion")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Lenovo")]
+[assembly: AssemblyCompany("company")]
 [assembly: AssemblyProduct("InvoiceConversion")]
 [assembly: AssemblyCopyright("Copyright © Lenovo 2013")]
 [assembly: AssemblyTrademark("")]

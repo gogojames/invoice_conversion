@@ -385,7 +385,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "InCoFm";
             this.ShowIcon = false;
-            this.Text = "發票";
+            this.Text = "創建發票";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

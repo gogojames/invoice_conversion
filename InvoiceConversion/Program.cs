@@ -14,7 +14,6 @@ namespace InvoiceConversion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
             LoginFm login = new LoginFm();
             DialogResult dr = login.ShowDialog();
             if (dr == DialogResult.OK)
@@ -23,8 +22,8 @@ namespace InvoiceConversion
                 {
                     Application.Run(new MainFm());
                 }
-                catch {
-                    MessageBox.Show("抱歉，系統發生意外退出重啟！","錯誤",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                catch(Exception e) {
+                    MessageBox.Show("抱歉，系統發生意外退出重啟！\n原因："+e.Message,"錯誤",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
                 finally
                 {

@@ -42,12 +42,12 @@ namespace InvoiceConversion
 
         private void printMe_Click(object sender, EventArgs e)
         {
-            if (closeMdiChildren())
-            {
+           // if (closeMdiChildren())
+           // {
                 PrInFm icf = new PrInFm();
                 icf.MdiParent = this;
                 icf.Show();
-            }
+           // }
         }
     }
 }
