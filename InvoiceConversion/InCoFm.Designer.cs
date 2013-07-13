@@ -61,6 +61,7 @@
             this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remake = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoicedetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Invoice_nmber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).BeginInit();
@@ -311,7 +312,8 @@
             this.rpiceDataGridViewTextBoxColumn,
             this.unitDataGridViewTextBoxColumn,
             this.qtyDataGridViewTextBoxColumn,
-            this.Remake});
+            this.Remake,
+            this.Invoice_nmber});
             this.dataGridView1.DataSource = this.invoicedetailBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(3, 17);
             this.dataGridView1.Name = "dataGridView1";
@@ -371,6 +373,14 @@
             // invoicedetailBindingSource
             // 
             this.invoicedetailBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_detail);
+            // 
+            // Invoice_nmber
+            // 
+            this.Invoice_nmber.DataPropertyName = "Invoice_nmber";
+            this.Invoice_nmber.HeaderText = "Invoice_nmber";
+            this.Invoice_nmber.Name = "Invoice_nmber";
+            this.Invoice_nmber.ReadOnly = true;
+            this.Invoice_nmber.Visible = false;
             // 
             // InCoFm
             // 
@@ -433,5 +443,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn qtyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remake;
         private System.Windows.Forms.Button printBut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Invoice_nmber;
     }
 }
