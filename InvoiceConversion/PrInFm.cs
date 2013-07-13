@@ -106,11 +106,11 @@ namespace InvoiceConversion
                     {
                         m = new Data.Invoice_detail();
                         m.AInvoice_id = reader["Ainvoice_id"].ToString();
-                        double _pice = 0.00;
-                        double.TryParse(reader["Rpice"].ToString(), out _pice);
+                        float _pice = 0;
+                        float.TryParse(reader["Rpice"].ToString(), out _pice);
                         m.Rpice = _pice;
-                        double _qty = 0.00;
-                        double.TryParse(reader["Qty"].ToString(), out _qty);
+                        float _qty = 0;
+                        float.TryParse(reader["Qty"].ToString(), out _qty);
                         m.Qty = _qty;
                         m.Item_name = reader["Item_name"].ToString();
 

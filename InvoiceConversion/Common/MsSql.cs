@@ -149,11 +149,11 @@ namespace InvoiceConversion.Common
                     float item_id;
                     float.TryParse(reader["Item_ID"].ToString(), out item_id);
                     idetail.Item_id = item_id;
-                    double _qty = 0.00;
-                    double.TryParse(reader["Qty"].ToString(), out _qty);
+                    float _qty = 0;
+                    float.TryParse(reader["Qty"].ToString(), out _qty);
                     idetail.Qty = _qty;
-                    double _rpice = 0.00;
-                    double.TryParse(reader["Price"].ToString(), out _rpice);
+                    float _rpice = 0;
+                    float.TryParse(reader["Price"].ToString(), out _rpice);
                     idetail.Item_name = reader["Metrial_N"].ToString();
                     idetail.Rpice = _rpice;
                     idetail.Unit = reader["Unit"].ToString();
@@ -275,6 +275,7 @@ namespace InvoiceConversion.Common
                     {
                         foreach (System.Data.SqlClient.SqlCommand cmd in cmds)
                         {
+                            System.Diagnostics.Debug.WriteLine(cmd.CommandText);
                             r = cmd.ExecuteNonQuery() > 0;
                         }
                         tarn.Commit();

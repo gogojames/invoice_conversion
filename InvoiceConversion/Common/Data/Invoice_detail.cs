@@ -85,9 +85,9 @@ namespace InvoiceConversion.Data
                 }
                 }
         }
-        private double rpice;
+        private float rpice;
 
-        public double Rpice
+        public float Rpice
         {
             get { return rpice; }
             set {
@@ -121,9 +121,9 @@ namespace InvoiceConversion.Data
                 }
                 }
         }
-        private double qty;
+        private float qty;
 
-        public double Qty
+        public float Qty
         {
             get { return qty; }
             set {
@@ -179,9 +179,9 @@ namespace InvoiceConversion.Data
             }
         }
 
-        private double money;
+        private float money;
 
-        public double Money
+        public float Money
         {
             get {
                 money = this.Rpice * this.Qty;

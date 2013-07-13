@@ -18,17 +18,17 @@ namespace InvoiceConversion
             DialogResult dr = login.ShowDialog();
             if (dr == DialogResult.OK)
             {
-                try
-                {
+                //try
+                //{
                     Application.Run(new MainFm());
-                }
-                catch(Exception e) {
-                    MessageBox.Show("抱歉，系統發生意外退出重啟！\n原因："+e.Message,"錯誤",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    Application.Run(new MainFm());
-                }
+                //}
+                //catch(Exception e) {
+                //    MessageBox.Show("抱歉，系統發生意外退出重啟！\n原因："+e.Message,"錯誤",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                //}
+                //finally
+                //{
+                //    Application.Run(new MainFm());
+                //}
                 
             }
             else

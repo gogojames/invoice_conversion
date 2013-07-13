@@ -39,13 +39,14 @@ namespace InvoiceConversion
         void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             // MessageBox.Show(e.Exception.Message);
-            e.Cancel = true;
-            var d = sender as DataGridView;
             
-                d.AllowUserToDeleteRows = true;
-          
-                d.Rows.Clear();
-                d.AllowUserToDeleteRows = false;
+            var d = sender as DataGridView;
+            if (string.IsNullOrEmpty(e.Exception.Message))
+                return;
+            e.Cancel = true;
+            d.AllowUserToDeleteRows = true;
+            d.Rows.Clear();
+            d.AllowUserToDeleteRows = false;
             
         }
 
@@ -144,11 +145,12 @@ namespace InvoiceConversion
             {
                 var dv = dataGridView1.Rows[i];
                 if (dv.Cells[3].Value == null) continue;
-                double p;
-                double.TryParse(dv.Cells[3].Value.ToString(), out p);
+                float p;
+                float.TryParse(dv.Cells[3].Value.ToString(), out p);
 
-                double.TryParse(string.Format("{0:F2}", (p * savl)), out p);
-                List_detail[i].Rpice = p;
+                float.TryParse(string.Format("{0:F2}", (p * savl)), out p);
+               // List_detail[i].Rpice = p;
+                dv.Cells[3].Value = p;
                 dv.Cells[3].Selected = true;
             }
 
@@ -160,6 +162,7 @@ namespace InvoiceConversion
         private void SaveBut_Click(object sender, EventArgs e)
         {
             Data.Invoice_master imaster = this.invoicemasterBindingSource.Current as Data.Invoice_master;
+            
             Data.InvoiceTitel title = this.title_combox.SelectedItem as Data.InvoiceTitel;
             imaster.Remake = reme.Text;
             imaster.Invoice_nmber = Common.MsSql.Next_No();
@@ -176,6 +179,7 @@ namespace InvoiceConversion
             {
                 i++;
                 d.Invoice_nmber = imaster.Invoice_nmber;
+                System.Diagnostics.Debug.WriteLine(imaster.Invoice_nmber);
                 sqls[i]=d.GetSqlQuery(DataMode, string.Empty);
                 objs[i] = d.Parameter;
                 
