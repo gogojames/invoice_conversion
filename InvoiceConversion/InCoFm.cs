@@ -33,6 +33,30 @@ namespace InvoiceConversion
             this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
             this.invoicedetailBindingSource.DataSource = List_detail;
             this.invoicemasterBindingSource.CurrentChanged += new EventHandler(invoicemasterBindingSource_CurrentChanged);
+        }
+
+        public InCoFm(Data.Invoice_master master)
+        {
+            InitializeComponent();
+            //this.printBut.Enabled = false;
+            //this.SaveBut.Enabled = false;
+            DataMode = Common.Basic.FormMode.modifyMode;
+            this.dataGridView1.DataError += new DataGridViewDataErrorEventHandler(dataGridView1_DataError);
+            dataGridView1.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+            this.invoicedetailBindingSource.DataError += new BindingManagerDataErrorEventHandler(invoicedetailBindingSource_DataError);
+            this.invoicemasterBindingSource.DataError += new BindingManagerDataErrorEventHandler(invoicemasterBindingSource_DataError);
+            this.customerBindingSource.DataSource = Common.MsSql.getCustmer();
+            this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
+            this.invoicedetailBindingSource.DataSource = Common.MsSql.InvoiceDetailByNmber(master.Invoice_nmber);
+            //this.invoicemasterBindingSource.CurrentChanged += new EventHandler(invoicemasterBindingSource_CurrentChanged);
+            label2.Visible = false;
+            label3.Visible = false;
+            dateTimePicker1.Visible = false;
+            dateTimePicker2.Visible = false;
+            invoiceNmber_text.Text = master.Invoice_nmber;
+            invoiceNmber_text.Enabled = false;
+            invoiceNmber_text.Visible = false;
+            reme.Text = master.Remake;
 
         }
 
@@ -157,7 +181,7 @@ namespace InvoiceConversion
                 dv.Cells[3].Selected = true;
             }
 
-            MessageBox.Show("修改成功");
+           // MessageBox.Show("修改成功");
            // invoicedetailBindingSource.DataSource = List_detail;
 
         }
@@ -167,37 +191,44 @@ namespace InvoiceConversion
             Data.Invoice_master imaster = this.invoicemasterBindingSource.Current as Data.Invoice_master;
             
             Data.InvoiceTitel title = this.title_combox.SelectedItem as Data.InvoiceTitel;
-            imaster.Remake = reme.Text;
-            imaster.Invoice_nmber = Common.MsSql.Next_No();
-            imaster.Invoice_title_id = title.Company_id;
-            
-            string sql=imaster.GetSqlQuery(DataMode,String.Empty);
-            //Common.MsSql.ExSql(sql, imaster.Parameter);
-            string[] sqls = new string[List_detail.Count+1];
-            object[] objs = new object[List_detail.Count+1];
-            int i=0;
-            sqls[i] = sql;
-            objs[i] = imaster.Parameter;
-            foreach (Data.Invoice_detail d in this.List_detail)
+            if (DataMode == Common.Basic.FormMode.newMode)
             {
-                i++;
-                d.BeginEdit();
-                d.Invoice_nmber = imaster.Invoice_nmber;
-                System.Diagnostics.Debug.WriteLine(d.Invoice_nmber);
-                sqls[i]=d.GetSqlQuery(DataMode, string.Empty);
-                objs[i] = d.Parameter;
-                
+                imaster.Remake = reme.Text;
+                imaster.Invoice_nmber = Common.MsSql.Next_No();
+                imaster.Invoice_title_id = title.Company_id;
+
+                string sql = imaster.GetSqlQuery(DataMode, String.Empty);
+                //Common.MsSql.ExSql(sql, imaster.Parameter);
+                string[] sqls = new string[List_detail.Count + 1];
+                object[] objs = new object[List_detail.Count + 1];
+                int i = 0;
+                sqls[i] = sql;
+                objs[i] = imaster.Parameter;
+                foreach (Data.Invoice_detail d in this.List_detail)
+                {
+                    i++;
+                    d.BeginEdit();
+                    d.Invoice_nmber = imaster.Invoice_nmber;
+                    System.Diagnostics.Debug.WriteLine(d.Invoice_nmber);
+                    sqls[i] = d.GetSqlQuery(DataMode, string.Empty);
+                    objs[i] = d.Parameter;
+
+                }
+                if (Common.MsSql.ExcMulSql(sqls, objs))
+                {
+                    MessageBox.Show("生成了新的發票號:" + imaster.Invoice_nmber, "發票", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.printBut.Enabled = true;
+                    this.SaveBut.Enabled = false;
+                }
+                else
+                {
+                    MessageBox.Show("生成了新的發票失敗", "提示", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.printBut.Enabled = false;
+                }
             }
-            if (Common.MsSql.ExcMulSql(sqls, objs))
+            if (DataMode == Common.Basic.FormMode.modifyMode)
             {
-                MessageBox.Show("生成了新的發票號:" + imaster.Invoice_nmber, "發票",MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.printBut.Enabled = true;
-                this.SaveBut.Enabled = false;
-            }
-            else
-            {
-                MessageBox.Show("生成了新的發票失敗","提示",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                this.printBut.Enabled = false;
+                MessageBox.Show("修改發票成功", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             //保存
         }

@@ -49,5 +49,21 @@ namespace InvoiceConversion
                 icf.Show();
            // }
         }
+
+        private void manageInMe_Click(object sender, EventArgs e)
+        {
+            //管理发票
+            InManage im = new InManage();
+            var dr = im.ShowDialog();
+            if (DialogResult.OK == dr)
+            {
+                if (closeMdiChildren())
+                {
+                    InCoFm icf = new InCoFm(im.Data);
+                    icf.MdiParent = this;
+                    icf.Show();
+                }
+            }
+        }
     }
 }

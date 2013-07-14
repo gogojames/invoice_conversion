@@ -83,6 +83,12 @@
     <Compile Include="InCoFm.Designer.cs">
       <DependentUpon>InCoFm.cs</DependentUpon>
     </Compile>
+    <Compile Include="InManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InManage.Designer.cs">
+      <DependentUpon>InManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainFm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InCoFm.resx">
       <DependentUpon>InCoFm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InManage.resx">
+      <DependentUpon>InManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainFm.resx">
       <DependentUpon>MainFm.cs</DependentUpon>

@@ -118,6 +118,63 @@ namespace InvoiceConversion.Common
             return li;
         }
 
+        public static List<Data.Invoice_master> InvoiceMasterBy(string Invoice_nmber, int? titid)
+        {
+            List<Data.Invoice_master> li = new List<Data.Invoice_master>();
+            string _and = "";
+            if (titid.HasValue)
+            {
+                _and = "(Invoice_nmber = @Invoice_nmber) and  invoice_title_id=@invoice_title_id ";
+            }
+            else
+            {
+                _and = " (Invoice_nmber like @Invoice_nmber) ";
+            }
+            string sql = @"SELECT  * " +
+                        "FROM   Invoice_master " +
+                  "WHERE  "+_and+"  ORDER BY Last_update DESC ";
+            using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)
+            {
+                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+                cmd.CommandText = sql;
+                cmd.Parameters.Add("@Invoice_nmber", System.Data.SqlDbType.NVarChar).Value = Invoice_nmber;
+                if (titid.HasValue)
+                {
+                    cmd.Parameters.Add("@invoice_title_id", System.Data.SqlDbType.Int).Value = titid;
+                }
+
+                cmd.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    System.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Data.Invoice_master idetail = new Data.Invoice_master();
+                        idetail.BeginEdit();
+                        idetail.Last_update = DateTime.Parse(reader["Last_update"].ToString()); ;
+                        idetail.Ainvoice_id = MsSql.ToString(reader["Ainvoice_id"]);
+                        idetail.Client_id = reader["Client_id"].ToString();
+                        idetail.Client_name = reader["Client_name"].ToString();
+                        idetail.Invoice_date = DateTime.Parse(reader["Invoice_date"].ToString());
+                        idetail.Invoice_nmber = reader["Invoice_nmber"].ToString();
+                        int tid = 0;
+                        int.TryParse(reader["Invoice_title_id"].ToString(), out tid);
+                        idetail.Invoice_title_id = tid;
+                        idetail.Remake = reader["Remake"].ToString();
+                        li.Add(idetail);
+                    }
+                }
+                finally
+                {
+                    conn.Close();
+                }
+
+            }
+
+            return li;
+        }
+
         public static List<Data.Invoice_detail> getInvoiceDetail(string client_name, DateTime start_date, DateTime end_date)
         {
             List<Data.Invoice_detail> dids = new List<Data.Invoice_detail>();
@@ -164,6 +221,56 @@ namespace InvoiceConversion.Common
             {
                 conn.Close();
             }
+
+            }
+            return dids; 
+        }
+
+        public static List<Data.Invoice_detail> InvoiceDetailByNmber(string nmber)
+        {
+            List<Data.Invoice_detail> dids = new List<Data.Invoice_detail>();
+            using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)
+            {
+                string sql = "SELECT *  " +
+                            "FROM      Invoice_detail " +
+                            "WHERE   (Invoice_nmber = @Invoice_nmber ) " +
+                            "ORDER BY Detail_id DESC";
+                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
+                cmd.CommandText = sql;
+                cmd.Parameters.Add("@Invoice_nmber", System.Data.SqlDbType.NVarChar).Value = nmber;
+                cmd.Connection = conn;
+                try
+                {
+                    conn.Open();
+                    System.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Data.Invoice_detail idetail = new Data.Invoice_detail();
+                        idetail.BeginEdit();
+                        idetail.AInvoice_id = MsSql.ToString(reader["AInvoice_ID"]);
+                        float item_id;
+                        float.TryParse(reader["Item_ID"].ToString(), out item_id);
+                        idetail.Item_id = item_id;
+                        float _qty = 0;
+                        float.TryParse(reader["Qty"].ToString(), out _qty);
+                        idetail.Qty = _qty;
+                        float _rpice = 0;
+                        float.TryParse(reader["Rpice"].ToString(), out _rpice);
+                        idetail.Item_name = reader["Item_name"].ToString();
+                        idetail.Rpice = _rpice;
+                        idetail.Unit = reader["Unit"].ToString();
+                        idetail.Invoice_nmber = reader["invoice_nmber"].ToString();
+                        int _id;
+                        int.TryParse(reader["Detail_id"].ToString(), out _id);
+                        idetail.Detail_id = _id;
+                        idetail.Remake = reader["Remake"].ToString();
+                        dids.Add(idetail);
+                    }
+                }
+                finally
+                {
+                    conn.Close();
+                }
 
             }
             return dids; 

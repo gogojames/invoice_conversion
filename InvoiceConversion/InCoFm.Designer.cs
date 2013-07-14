@@ -60,8 +60,8 @@
             this.unitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Remake = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.invoicedetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Invoice_nmber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invoicedetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).BeginInit();
@@ -165,6 +165,7 @@
             // 
             this.title_combox.DataSource = this.invoiceTitelBindingSource;
             this.title_combox.DisplayMember = "Company_name";
+            this.title_combox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.title_combox.FormattingEnabled = true;
             this.title_combox.Location = new System.Drawing.Point(469, 48);
             this.title_combox.Name = "title_combox";
@@ -370,10 +371,6 @@
             this.Remake.HeaderText = "備註";
             this.Remake.Name = "Remake";
             // 
-            // invoicedetailBindingSource
-            // 
-            this.invoicedetailBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_detail);
-            // 
             // Invoice_nmber
             // 
             this.Invoice_nmber.DataPropertyName = "Invoice_nmber";
@@ -381,6 +378,10 @@
             this.Invoice_nmber.Name = "Invoice_nmber";
             this.Invoice_nmber.ReadOnly = true;
             this.Invoice_nmber.Visible = false;
+            // 
+            // invoicedetailBindingSource
+            // 
+            this.invoicedetailBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_detail);
             // 
             // InCoFm
             // 

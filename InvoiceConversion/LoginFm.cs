@@ -17,6 +17,11 @@ namespace InvoiceConversion
 
         private void button1_Click(object sender, EventArgs e)
         {
+            login();
+        }
+
+        private void login()
+        {
             if (this.textBox1.Text == string.Empty)
             {
                 MessageBox.Show("輸入用戶名！");
@@ -37,7 +42,7 @@ namespace InvoiceConversion
             }
             else
             {
-                MessageBox.Show("登錄失敗\n\r原因："+loging.Error);
+                MessageBox.Show("登錄失敗\n\r原因：" + loging.Error);
             }
         }
 
@@ -54,6 +59,18 @@ namespace InvoiceConversion
             {
                 this.Show();
             }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                login();
+        }
+
+        private void textBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+                login();
         }
 
     }
