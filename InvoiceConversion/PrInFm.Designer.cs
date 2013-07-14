@@ -34,7 +34,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.invoiceTitelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.invoicemasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoicemasterBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
@@ -49,7 +52,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(440, 13);
+            this.button1.Location = new System.Drawing.Point(602, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -82,11 +85,28 @@
             // 
             this.invoiceTitelBindingSource.DataSource = typeof(InvoiceConversion.Data.InvoiceTitel);
             // 
+            // comboBox2
+            // 
+            this.comboBox2.DataSource = this.invoicemasterBindingSource;
+            this.comboBox2.DisplayMember = "Invoice_nmber";
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(428, 12);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 20);
+            this.comboBox2.TabIndex = 5;
+            this.comboBox2.ValueMember = "Invoice_nmber";
+            // 
+            // invoicemasterBindingSource
+            // 
+            this.invoicemasterBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_master);
+            // 
             // PrInFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 470);
+            this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -94,6 +114,7 @@
             this.Name = "PrInFm";
             this.Text = "PrInFm";
             ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.invoicemasterBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,6 +127,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.BindingSource invoiceTitelBindingSource;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.BindingSource invoicemasterBindingSource;
 
     }
 }

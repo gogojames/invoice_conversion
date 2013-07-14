@@ -18,6 +18,7 @@ namespace InvoiceConversion
             get { return list_detail; }
             set { list_detail = value; }
         }
+        List<Data.Invoice_master> list_master;
         public Common.Basic.FormMode DataMode;
         public InCoFm()
         {
@@ -33,14 +34,22 @@ namespace InvoiceConversion
             this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
             this.invoicedetailBindingSource.DataSource = List_detail;
             this.invoicemasterBindingSource.CurrentChanged += new EventHandler(invoicemasterBindingSource_CurrentChanged);
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
         }
 
         public InCoFm(Data.Invoice_master master)
         {
             InitializeComponent();
-            //this.printBut.Enabled = false;
-            //this.SaveBut.Enabled = false;
+            this.edit_but.Visible = true;
+            this.SaveBut.Enabled = false;
+            label6.Visible = true;
+
+            
             DataMode = Common.Basic.FormMode.modifyMode;
+            list_master = new List<Data.Invoice_master>();
+            list_master.Add(master);
+            this.invoicemasterBindingSource.DataSource = list_master;
             this.dataGridView1.DataError += new DataGridViewDataErrorEventHandler(dataGridView1_DataError);
             dataGridView1.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             this.invoicedetailBindingSource.DataError += new BindingManagerDataErrorEventHandler(invoicedetailBindingSource_DataError);
@@ -49,13 +58,15 @@ namespace InvoiceConversion
             this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
             this.invoicedetailBindingSource.DataSource = Common.MsSql.InvoiceDetailByNmber(master.Invoice_nmber);
             //this.invoicemasterBindingSource.CurrentChanged += new EventHandler(invoicemasterBindingSource_CurrentChanged);
+            this.custmer_text.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.invoicemasterBindingSource, "Client_name", true));
+            this.title_combox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.invoicemasterBindingSource, "invoice_title_id", true));
             label2.Visible = false;
             label3.Visible = false;
             dateTimePicker1.Visible = false;
             dateTimePicker2.Visible = false;
             invoiceNmber_text.Text = master.Invoice_nmber;
             invoiceNmber_text.Enabled = false;
-            invoiceNmber_text.Visible = false;
+            invoiceNmber_text.Visible = true;
             reme.Text = master.Remake;
 
         }
@@ -263,6 +274,11 @@ namespace InvoiceConversion
             PrInFm pf = new PrInFm();
             pf.Preview(t);
             pf.ShowDialog();
+        }
+
+        private void InCoFm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.edit_but = new System.Windows.Forms.Button();
             this.printBut = new System.Windows.Forms.Button();
             this.custmer_text = new System.Windows.Forms.ComboBox();
             this.customerBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -75,6 +76,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.edit_but);
             this.groupBox1.Controls.Add(this.printBut);
             this.groupBox1.Controls.Add(this.custmer_text);
             this.groupBox1.Controls.Add(this.invoiceNmber_text);
@@ -95,6 +97,16 @@
             this.groupBox1.Size = new System.Drawing.Size(734, 113);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // edit_but
+            // 
+            this.edit_but.Location = new System.Drawing.Point(559, 14);
+            this.edit_but.Name = "edit_but";
+            this.edit_but.Size = new System.Drawing.Size(75, 23);
+            this.edit_but.TabIndex = 17;
+            this.edit_but.Text = "修改";
+            this.edit_but.UseVisualStyleBackColor = true;
+            this.edit_but.Visible = false;
             // 
             // printBut
             // 
@@ -202,7 +214,6 @@
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(146, 21);
             this.dateTimePicker2.TabIndex = 5;
-            this.dateTimePicker2.ValueChanged += new System.EventHandler(this.dateTimePicker2_ValueChanged);
             // 
             // dateTimePicker1
             // 
@@ -211,7 +222,6 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(137, 21);
             this.dateTimePicker1.TabIndex = 4;
             this.dateTimePicker1.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // label4
             // 
@@ -397,6 +407,7 @@
             this.ShowIcon = false;
             this.Text = "創建發票";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.InCoFm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
@@ -445,5 +456,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Remake;
         private System.Windows.Forms.Button printBut;
         private System.Windows.Forms.DataGridViewTextBoxColumn Invoice_nmber;
+        private System.Windows.Forms.Button edit_but;
     }
 }
