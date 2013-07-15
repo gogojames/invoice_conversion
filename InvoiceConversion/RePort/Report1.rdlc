@@ -410,7 +410,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Item_name</rd:DefaultName>
@@ -440,7 +442,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Rpice</rd:DefaultName>
@@ -470,7 +474,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Qty</rd:DefaultName>
@@ -500,7 +506,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Unit</rd:DefaultName>
@@ -530,7 +538,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Remake</rd:DefaultName>
@@ -560,7 +570,9 @@
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Money</rd:DefaultName>
@@ -575,6 +587,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -614,7 +627,7 @@
         <Top>0.17639cm</Top>
         <Left>0.38841cm</Left>
         <Height>0.93543cm</Height>
-        <Width>21.4823cm</Width>
+        <Width>21.48235cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -628,7 +641,7 @@
   <Width>8.73552in</Width>
   <Page>
     <PageHeader>
-      <Height>3.23737cm</Height>
+      <Height>4.05758cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -654,7 +667,7 @@
           <rd:DefaultName>Textbox12</rd:DefaultName>
           <Top>0.37077cm</Top>
           <Left>0.38841cm</Left>
-          <Height>0.97042cm</Height>
+          <Height>1.12917cm</Height>
           <Width>21.4823cm</Width>
           <Style>
             <Border>
@@ -720,7 +733,7 @@
           <Top>1.81038cm</Top>
           <Left>2.21072cm</Left>
           <Height>0.6cm</Height>
-          <Width>8.85cm</Width>
+          <Width>19.65999cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -817,7 +830,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>1.8424cm</Top>
+          <Top>2.4774cm</Top>
           <Left>13.98878cm</Left>
           <Height>0.6cm</Height>
           <Width>2.02375cm</Width>
@@ -849,7 +862,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
-          <Top>1.8424cm</Top>
+          <Top>2.4774cm</Top>
           <Left>16.18891cm</Left>
           <Height>0.6cm</Height>
           <Width>5.6818cm</Width>
@@ -883,7 +896,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox6</rd:DefaultName>
-          <Top>2.51621cm</Top>
+          <Top>3.30996cm</Top>
           <Left>14.41211cm</Left>
           <Height>0.6cm</Height>
           <Width>1.60042cm</Width>
@@ -915,11 +928,75 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox7</rd:DefaultName>
-          <Top>2.49626cm</Top>
+          <Top>3.29001cm</Top>
           <Left>16.18891cm</Left>
           <Height>0.6cm</Height>
           <Width>5.6818cm</Width>
           <ZIndex>8</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Fax">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!Fax.Value, "intitel")</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Fax</rd:DefaultName>
+          <Top>3.21852cm</Top>
+          <Left>2.21072cm</Left>
+          <Height>0.6cm</Height>
+          <Width>8.85cm</Width>
+          <ZIndex>9</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox11">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>傳真:</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox11</rd:DefaultName>
+          <Top>3.21769cm</Top>
+          <Left>0.41663cm</Left>
+          <Height>0.6cm</Height>
+          <Width>1.71648cm</Width>
+          <ZIndex>10</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>

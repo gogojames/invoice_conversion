@@ -104,7 +104,7 @@
             this.edit_but.Name = "edit_but";
             this.edit_but.Size = new System.Drawing.Size(75, 23);
             this.edit_but.TabIndex = 17;
-            this.edit_but.Text = "修改";
+            this.edit_but.Text = "修改(&E)";
             this.edit_but.UseVisualStyleBackColor = true;
             this.edit_but.Visible = false;
             // 
@@ -114,7 +114,7 @@
             this.printBut.Name = "printBut";
             this.printBut.Size = new System.Drawing.Size(75, 23);
             this.printBut.TabIndex = 16;
-            this.printBut.Text = "列印";
+            this.printBut.Text = "列印(&P)";
             this.printBut.UseVisualStyleBackColor = true;
             this.printBut.Click += new System.EventHandler(this.printBut_Click);
             // 
@@ -247,9 +247,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 51);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 1;
-            this.label2.Text = "日期";
+            this.label2.Text = "日期範圍";
             // 
             // label1
             // 
@@ -283,11 +283,11 @@
             // SaveBut
             // 
             this.SaveBut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveBut.Location = new System.Drawing.Point(656, 290);
+            this.SaveBut.Location = new System.Drawing.Point(643, 290);
             this.SaveBut.Name = "SaveBut";
-            this.SaveBut.Size = new System.Drawing.Size(71, 50);
+            this.SaveBut.Size = new System.Drawing.Size(84, 50);
             this.SaveBut.TabIndex = 12;
-            this.SaveBut.Text = "生成發票";
+            this.SaveBut.Text = "生成發票(&N)";
             this.SaveBut.UseVisualStyleBackColor = true;
             this.SaveBut.Click += new System.EventHandler(this.SaveBut_Click);
             // 
@@ -328,6 +328,7 @@
             this.dataGridView1.DataSource = this.invoicedetailBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(3, 17);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(734, 142);
             this.dataGridView1.TabIndex = 0;

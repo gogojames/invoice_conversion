@@ -37,6 +37,11 @@ namespace InvoiceConversion
 
         public void Preview(Data.InvoiceTitel title,Data.Invoice_master master)
         {
+            if (title == null || master == null)
+            {
+                MessageBox.Show("請選擇發標題和編號.");
+                return;
+            }
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "InvoiceConversion.RePort.Report1.rdlc";
             this.reportViewer1.LocalReport.DataSources.Clear();
             var data = new List<Data.Invoice_master>();
@@ -137,7 +142,7 @@ namespace InvoiceConversion
 
                         m.Invoice_nmber = reader["Invoice_nmber"].ToString();
                         m.Detail_id = int.Parse(reader["Detail_id"].ToString());
-                        //m.Last_update =DateTime.Parse( reader["Last_update"].ToString());
+                        m.Unit = reader["unit"].ToString();
                         m.Remake = reader["Remake"].ToString();
                         list_d.Add(m);
                     }

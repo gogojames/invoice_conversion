@@ -132,7 +132,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(27, 136);
+            this.label4.Location = new System.Drawing.Point(27, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(29, 12);
             this.label4.TabIndex = 9;
@@ -141,15 +141,16 @@
             // textBox4
             // 
             this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.invoiceTitelBindingSource1, "Address", true));
-            this.textBox4.Location = new System.Drawing.Point(87, 133);
+            this.textBox4.Location = new System.Drawing.Point(87, 124);
+            this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(192, 21);
+            this.textBox4.Size = new System.Drawing.Size(192, 61);
             this.textBox4.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(27, 183);
+            this.label5.Location = new System.Drawing.Point(27, 194);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 11;
@@ -158,7 +159,7 @@
             // textBox5
             // 
             this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.invoiceTitelBindingSource1, "E_mail", true));
-            this.textBox5.Location = new System.Drawing.Point(87, 180);
+            this.textBox5.Location = new System.Drawing.Point(87, 191);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(192, 21);
             this.textBox5.TabIndex = 4;
