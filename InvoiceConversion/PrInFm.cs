@@ -14,26 +14,36 @@ namespace InvoiceConversion
         public PrInFm()
         {
             InitializeComponent();
+            this.invoiceTitelBindingSource.CurrentChanged += new EventHandler(invoiceTitelBindingSource_CurrentChanged);
             this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
+            
+        }
+
+        void invoiceTitelBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+            var detail = this.invoiceTitelBindingSource.Current as Data.InvoiceTitel;
+
+            this.invoicemasterBindingSource.DataSource = Common.MsSql.InvoiceMasterBy(string.Empty, detail.Company_id);
         }
 
 
 
         private void button1_Click(object sender, EventArgs e)
+        {            
+            var title = this.comboBox1.SelectedItem as Data.InvoiceTitel;
+            var nmber = this.invoicemasterBindingSource.Current as Data.Invoice_master;
+            Preview(title,nmber);
+        }
+
+        public void Preview(Data.InvoiceTitel title,Data.Invoice_master master)
         {
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "InvoiceConversion.RePort.Report1.rdlc";
             this.reportViewer1.LocalReport.DataSources.Clear();
-            var title = this.comboBox1.SelectedItem as Data.InvoiceTitel;
-            Preview(title);
-        }
-
-        public void Preview(Data.InvoiceTitel title)
-        {
             var data = new List<Data.Invoice_master>();
 
             var intitel = new List<Data.InvoiceTitel>();
             
-            var m = getMaster(title.Company_id);
+            var m = getMaster(title.Company_id,master.Invoice_title_id);
             data.Add(m);
             var indetail = getMasterDetail(m.Invoice_nmber);
             intitel.Add(title);
@@ -44,12 +54,23 @@ namespace InvoiceConversion
             this.reportViewer1.RefreshReport();
         }
 
-        Data.Invoice_master getMaster(int? company_id)
+        Data.Invoice_master getMaster(int? company_id,int? title_id )
         {
             string w = "";
             if (company_id.HasValue)
             {
                 w = " where Invoice_title_id= "+company_id.Value;
+            }
+            if (title_id.HasValue)
+            {
+                if (string.IsNullOrEmpty(w))
+                {
+                    w = " where Invoice_title_id= "+title_id ;
+                }
+                else
+                {
+                    w += " and Invoice_title_id= "+title_id;
+                }
             }
             Data.Invoice_master m = new Data.Invoice_master();
             using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)

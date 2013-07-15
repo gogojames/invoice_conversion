@@ -271,8 +271,9 @@ namespace InvoiceConversion
         {
             //打印
             var t = this.invoiceTitelBindingSource.Current as Data.InvoiceTitel;
+            var m = this.invoicemasterBindingSource.Current as Data.Invoice_master;
             PrInFm pf = new PrInFm();
-            pf.Preview(t);
+            pf.Preview(t,m);
             pf.ShowDialog();
         }
 

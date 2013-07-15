@@ -122,13 +122,17 @@ namespace InvoiceConversion.Common
         {
             List<Data.Invoice_master> li = new List<Data.Invoice_master>();
             string _and = "";
-            if (titid.HasValue)
+            if ( !string.IsNullOrEmpty(Invoice_nmber) && titid.HasValue)
             {
                 _and = "(Invoice_nmber = @Invoice_nmber) and  invoice_title_id=@invoice_title_id ";
             }
-            else
+            if (!string.IsNullOrEmpty(Invoice_nmber))
             {
                 _and = " (Invoice_nmber like @Invoice_nmber) ";
+            }
+            if (titid.HasValue)
+            {
+                _and = "  invoice_title_id=@invoice_title_id ";
             }
             string sql = @"SELECT  * " +
                         "FROM   Invoice_master " +
@@ -137,7 +141,10 @@ namespace InvoiceConversion.Common
             {
                 System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
                 cmd.CommandText = sql;
-                cmd.Parameters.Add("@Invoice_nmber", System.Data.SqlDbType.NVarChar).Value = Invoice_nmber;
+                if (!string.IsNullOrEmpty(Invoice_nmber))
+                {
+                    cmd.Parameters.Add("@Invoice_nmber", System.Data.SqlDbType.NVarChar).Value = Invoice_nmber;
+                }
                 if (titid.HasValue)
                 {
                     cmd.Parameters.Add("@invoice_title_id", System.Data.SqlDbType.Int).Value = titid;
