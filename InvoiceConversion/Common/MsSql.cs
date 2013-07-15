@@ -306,6 +306,7 @@ namespace InvoiceConversion.Common
                     while (reader.Read())
                     {
                         Data.InvoiceTitel c = new Data.InvoiceTitel();
+                        c.BeginEdit();
                         c.Address = reader["Address"].ToString();
                         c.Company_name = reader["company_name"].ToString();
                         c.Company_id = int.Parse(reader["company_id"].ToString());

@@ -44,8 +44,11 @@ namespace InvoiceConversion
             this.edit_but.Visible = true;
             this.SaveBut.Enabled = false;
             label6.Visible = true;
-
-            
+            label1.Visible = false;
+            custmer_text.Visible = false;
+            edit_but.Click += new EventHandler(SaveBut_Click);
+            this.custmer_text.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.invoicemasterBindingSource, "Client_name", true));
+            this.title_combox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.invoicemasterBindingSource, "invoice_title_id", true));
             DataMode = Common.Basic.FormMode.modifyMode;
             list_master = new List<Data.Invoice_master>();
             list_master.Add(master);
@@ -54,12 +57,12 @@ namespace InvoiceConversion
             dataGridView1.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             this.invoicedetailBindingSource.DataError += new BindingManagerDataErrorEventHandler(invoicedetailBindingSource_DataError);
             this.invoicemasterBindingSource.DataError += new BindingManagerDataErrorEventHandler(invoicemasterBindingSource_DataError);
-            this.customerBindingSource.DataSource = Common.MsSql.getCustmer();
+           // this.customerBindingSource.DataSource = Common.MsSql.getCustmer();
             this.invoiceTitelBindingSource.DataSource = Common.MsSql.getTitle();
-            this.invoicedetailBindingSource.DataSource = Common.MsSql.InvoiceDetailByNmber(master.Invoice_nmber);
+            List_detail= Common.MsSql.InvoiceDetailByNmber(master.Invoice_nmber);
+            this.invoicedetailBindingSource.DataSource = List_detail;
             //this.invoicemasterBindingSource.CurrentChanged += new EventHandler(invoicemasterBindingSource_CurrentChanged);
-            this.custmer_text.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.invoicemasterBindingSource, "Client_name", true));
-            this.title_combox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.invoicemasterBindingSource, "invoice_title_id", true));
+           
             label2.Visible = false;
             label3.Visible = false;
             dateTimePicker1.Visible = false;
@@ -239,7 +242,35 @@ namespace InvoiceConversion
             }
             if (DataMode == Common.Basic.FormMode.modifyMode)
             {
-                MessageBox.Show("修改發票成功", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                imaster.Remake = reme.Text;
+                imaster.Invoice_title_id = title.Company_id;
+
+                string sql = imaster.GetSqlQuery(DataMode, "Invoice_nmber");
+                //Common.MsSql.ExSql(sql, imaster.Parameter);
+                string[] sqls = new string[List_detail.Count + 1];
+                object[] objs = new object[List_detail.Count + 1];
+                int i = 0;
+                sqls[i] = sql;
+                objs[i] = imaster.Parameter;
+                foreach (Data.Invoice_detail d in this.List_detail)
+                {
+                    
+                    i++;
+                    d.BeginEdit();
+                    d.Invoice_nmber = imaster.Invoice_nmber;
+                    System.Diagnostics.Debug.WriteLine(d.Invoice_nmber);
+                    sqls[i] = d.GetSqlQuery(DataMode, "Detail_id");
+                    objs[i] = d.Parameter;
+
+                }
+                if (Common.MsSql.ExcMulSql(sqls, objs))
+                {
+                    MessageBox.Show("修改發票成功", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("修改發票失败", "提示", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                }
             }
             //保存
         }

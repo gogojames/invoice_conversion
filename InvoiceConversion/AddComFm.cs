@@ -47,13 +47,11 @@ namespace InvoiceConversion
             if (it == null) {
                 MessageBox.Show("數據不完整");
                 return; }
+            string sql = string.Empty;
             if (DataMode == Common.Basic.FormMode.modifyMode)
             {
-                int _id=it.Company_id;
-                it.Company_id = 0;
-                it.Company_id = _id;
+                sql=it.GetSqlQuery(this.DataMode, "Company_id");
             }
-            string sql = it.GetSqlQuery(this.DataMode, "Company_id");
             
             int i=Common.MsSql.ExSql(sql,it.Parameter);
             if (i == 0)

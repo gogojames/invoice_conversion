@@ -185,7 +185,7 @@ namespace InvoiceConversion.Common
                         n++;
                     }
 
-                    _sql = @"update " + this.ToString() + " set " + _setCol.Remove(_setCol.LastIndexOf(','),1) + " where (" + _whereCol + ")";
+                    _sql = @"update " + this.ToString() + " set " + _setCol + " where (" + _whereCol + ")";
                     break;
                 case Common.Basic.FormMode.newMode:
                     if (0 == Edited.Count)
