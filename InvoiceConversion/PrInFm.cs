@@ -43,7 +43,7 @@ namespace InvoiceConversion
 
             var intitel = new List<Data.InvoiceTitel>();
             
-            var m = getMaster(title.Company_id,master.Invoice_title_id);
+            var m = getMaster(title.Company_id,master.Invoice_nmber);
             data.Add(m);
             var indetail = getMasterDetail(m.Invoice_nmber);
             intitel.Add(title);
@@ -54,22 +54,22 @@ namespace InvoiceConversion
             this.reportViewer1.RefreshReport();
         }
 
-        Data.Invoice_master getMaster(int? company_id,int? title_id )
+        Data.Invoice_master getMaster(int? company_id, string _Invoice_nmber)
         {
             string w = "";
             if (company_id.HasValue)
             {
                 w = " where Invoice_title_id= "+company_id.Value;
             }
-            if (title_id.HasValue)
+            if (!string.IsNullOrEmpty(_Invoice_nmber))
             {
                 if (string.IsNullOrEmpty(w))
                 {
-                    w = " where Invoice_title_id= "+title_id ;
+                    w = " where Invoice_nmber= '" + _Invoice_nmber + "' ";
                 }
                 else
                 {
-                    w += " and Invoice_title_id= "+title_id;
+                    w += " and Invoice_nmber= '" + _Invoice_nmber + "' ";
                 }
             }
             Data.Invoice_master m = new Data.Invoice_master();
