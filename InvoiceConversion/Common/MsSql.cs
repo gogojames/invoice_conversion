@@ -80,11 +80,18 @@ namespace InvoiceConversion.Common
                 "Invoice.Invoice_Date, Invoice.AInvoice_ID, Invoice.Invoice_ID,Invoice.Meno " +
                         "FROM      Custmer INNER JOIN "+
                   " Invoice ON Custmer.Client_ID = Invoice.Client_ID "+
-                  "WHERE   (Invoice.Invoice_Date BETWEEN @start_date AND @end_date) AND (Custmer.Client_N = @client_name) ";
+                  "WHERE   (Invoice.Invoice_Date BETWEEN @start_date AND @end_date)  ";
+            if (!string.IsNullOrEmpty(client_name))
+            {
+                sql += " AND (Custmer.Client_ID = @client_name)";
+            }
             using(System.Data.SqlClient.SqlConnection conn=MsSql.connection){
                 System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
                 cmd.CommandText = sql;
-                cmd.Parameters.Add("@client_name", System.Data.SqlDbType.NVarChar).Value = client_name;
+                if (!string.IsNullOrEmpty(client_name))
+                {
+                    cmd.Parameters.Add("@client_name", System.Data.SqlDbType.NVarChar).Value = client_name;
+                }
                 cmd.Parameters.Add("@start_date", System.Data.SqlDbType.DateTime).Value = start_date;
                 cmd.Parameters.Add("@end_date", System.Data.SqlDbType.DateTime).Value = end_date;
 
@@ -187,7 +194,7 @@ namespace InvoiceConversion.Common
             List<Data.Invoice_detail> dids = new List<Data.Invoice_detail>();
             using (System.Data.SqlClient.SqlConnection conn = MsSql.connection) 
             {
-            string sql="SELECT Custmer.Client_N, Custmer.Client_ID, Custmer.Address, Invoice.AInvoice_ID, "+
+                string sql = "SELECT Custmer.Client_N, Custmer.Client_ID, Custmer.Address, Invoice.AInvoice_ID, " +
   "              Invoice.Invoice_ID, Invoice.Contact_Per, Invoice.Invoice_Date, Invoice_item.Unit, "+
  "               Invoice_item.Price, Invoice_item.Qty,Invoice_item.Item_ID,Invoice_item.Metrial_N " +
 "FROM      Custmer INNER JOIN "+
@@ -413,6 +420,7 @@ namespace InvoiceConversion.Common
         public static List<Data.Customer> getCustmer()
         {
             List<Data.Customer> lc = new List<Data.Customer>();
+            lc.Add(new Data.Customer() { Clent_n ="全部", Client_id="" });
             using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)
             {
                 string sql = "SELECT   * FROM      Custmer";
@@ -465,26 +473,7 @@ namespace InvoiceConversion.Common
                         no = reader["doc_next_no"].ToString();
                     }
                     StringBuilder new_no = new StringBuilder();
-                    var tmp = new StringBuilder();
-                    var _int = no.TrimStart(new char[] { 'N' });
-                    int n_int = 0;
-                    int.TryParse(_int, out n_int);
-                    n_int++;
-                    foreach (char c in no.ToCharArray())
-                    {
-                        if (c == 78 || c == 48)
-                        {
-                            new_no.Append(c.ToString());
-                            tmp.Append(c.ToString());
-                        }
-                    }
-                    tmp.Append(n_int.ToString());
-                    int di = tmp.Length - no.Length;
-                    if (di>0)
-                    {
-                       new_no = new_no.Remove(new_no.Length - di, di-1);
-                    }
-                    new_no.Append(n_int.ToString());
+                    new_no.Append(next(no));
                     MsSql.ExSql("UPDATE doc_no SET doc_next_no =@doc_next_no WHERE (doc_no = 'new_invoice') ", new object[] { "@doc_next_no", new_no.ToString() });
                 }
                 finally
@@ -494,6 +483,32 @@ namespace InvoiceConversion.Common
 
             }
             return no;
+        }
+
+        static string next(string no)
+        {
+            System.Text.StringBuilder new_no = new System.Text.StringBuilder();
+            var tmp = new System.Text.StringBuilder();
+            var _int = no.TrimStart(new char[] { 'N' });
+            int n_int = 0;
+            int.TryParse(_int, out n_int);
+            n_int++;
+            foreach (char c in no.ToCharArray())
+            {
+                if (c == 78 || c == 48)
+                {
+                    new_no.Append(c.ToString());
+                    tmp.Append(c.ToString());
+                }
+            }
+            tmp.Append(n_int.ToString());
+            int di = tmp.Length - no.Length;
+            if (di > 0)
+            {
+                new_no = new_no.Remove(new_no.Length - di, di);
+            }
+            new_no.Append(n_int.ToString());
+            return new_no.ToString();
         }
 
         public static string ToString(object obj)

@@ -178,6 +178,7 @@ namespace InvoiceConversion
         private void msleBut_Click(object sender, EventArgs e)
         {
             //修改折扣
+            
             Double savl = 0.00;
             string savl_str = string.Format("0.{0}", textBox2.Text);
             Double.TryParse(savl_str, out savl);
@@ -203,7 +204,7 @@ namespace InvoiceConversion
         private void SaveBut_Click(object sender, EventArgs e)
         {
             Data.Invoice_master imaster = this.invoicemasterBindingSource.Current as Data.Invoice_master;
-            
+            imaster.BeginEdit();
             Data.InvoiceTitel title = this.title_combox.SelectedItem as Data.InvoiceTitel;
             if (DataMode == Common.Basic.FormMode.newMode)
             {
@@ -226,8 +227,10 @@ namespace InvoiceConversion
                     System.Diagnostics.Debug.WriteLine(d.Invoice_nmber);
                     sqls[i] = d.GetSqlQuery(DataMode, string.Empty);
                     objs[i] = d.Parameter;
+                    d.EndEdit();
 
                 }
+                imaster.EndEdit();
                 if (Common.MsSql.ExcMulSql(sqls, objs))
                 {
                     MessageBox.Show("生成了新的發票號:" + imaster.Invoice_nmber, "發票", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -261,6 +264,7 @@ namespace InvoiceConversion
                     System.Diagnostics.Debug.WriteLine(d.Invoice_nmber);
                     sqls[i] = d.GetSqlQuery(DataMode, "Detail_id");
                     objs[i] = d.Parameter;
+                    d.EndEdit();
 
                 }
                 if (Common.MsSql.ExcMulSql(sqls, objs))
@@ -277,25 +281,26 @@ namespace InvoiceConversion
 
         private void custmer_text_TextChanged(object sender, EventArgs e)
         {
+            getMaster();
+        }
+
+        private void getMaster()
+        {
             this.Cursor = Cursors.WaitCursor;
-            this.invoicemasterBindingSource.DataSource = Common.MsSql.getInvoice(custmer_text.Text, dateTimePicker1.Value, dateTimePicker2.Value);
+            var cu = custmer_text.SelectedItem as Data.Customer;
+            if (cu == null) return;
+            this.invoicemasterBindingSource.DataSource = Common.MsSql.getInvoice(cu.Client_id, dateTimePicker1.Value, dateTimePicker2.Value);
             this.Cursor = Cursors.Default;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
-
-            this.invoicemasterBindingSource.DataSource = Common.MsSql.getInvoice(custmer_text.Text, dateTimePicker1.Value, dateTimePicker2.Value);
-            this.Cursor = Cursors.Default;
+            getMaster();
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            this.Cursor = Cursors.WaitCursor;
-
-            this.invoicemasterBindingSource.DataSource = Common.MsSql.getInvoice(custmer_text.Text, dateTimePicker1.Value, dateTimePicker2.Value);
-            this.Cursor = Cursors.Default;
+            getMaster();
         }
 
         private void printBut_Click(object sender, EventArgs e)
@@ -311,6 +316,11 @@ namespace InvoiceConversion
         private void InCoFm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox2_KeyUp(object sender, KeyEventArgs e)
+        {
+            
         }
     }
 }

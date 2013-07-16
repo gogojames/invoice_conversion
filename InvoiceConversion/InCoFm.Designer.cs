@@ -63,6 +63,7 @@
             this.Remake = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Invoice_nmber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoicedetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).BeginInit();
@@ -122,6 +123,7 @@
             // 
             this.custmer_text.DataSource = this.customerBindingSource;
             this.custmer_text.DisplayMember = "Clent_n";
+            this.custmer_text.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.custmer_text.FormattingEnabled = true;
             this.custmer_text.Location = new System.Drawing.Point(72, 15);
             this.custmer_text.Name = "custmer_text";
@@ -137,9 +139,9 @@
             // invoiceNmber_text
             // 
             this.invoiceNmber_text.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.invoiceNmber_text.Location = new System.Drawing.Point(446, 86);
+            this.invoiceNmber_text.Location = new System.Drawing.Point(72, 86);
             this.invoiceNmber_text.Name = "invoiceNmber_text";
-            this.invoiceNmber_text.Size = new System.Drawing.Size(90, 21);
+            this.invoiceNmber_text.Size = new System.Drawing.Size(137, 21);
             this.invoiceNmber_text.TabIndex = 14;
             this.invoiceNmber_text.Visible = false;
             // 
@@ -147,7 +149,7 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(387, 92);
+            this.label6.Location = new System.Drawing.Point(13, 92);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 13;
@@ -156,11 +158,11 @@
             // 
             // manageBut
             // 
-            this.manageBut.Location = new System.Drawing.Point(689, 45);
+            this.manageBut.Location = new System.Drawing.Point(649, 45);
             this.manageBut.Name = "manageBut";
-            this.manageBut.Size = new System.Drawing.Size(35, 23);
+            this.manageBut.Size = new System.Drawing.Size(75, 23);
             this.manageBut.TabIndex = 11;
-            this.manageBut.Text = "...";
+            this.manageBut.Text = "管理標題";
             this.manageBut.UseVisualStyleBackColor = true;
             this.manageBut.Click += new System.EventHandler(this.manageBut_Click);
             // 
@@ -179,9 +181,9 @@
             this.title_combox.DisplayMember = "Company_name";
             this.title_combox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.title_combox.FormattingEnabled = true;
-            this.title_combox.Location = new System.Drawing.Point(469, 48);
+            this.title_combox.Location = new System.Drawing.Point(451, 46);
             this.title_combox.Name = "title_combox";
-            this.title_combox.Size = new System.Drawing.Size(214, 20);
+            this.title_combox.Size = new System.Drawing.Size(192, 20);
             this.title_combox.TabIndex = 9;
             this.title_combox.ValueMember = "Company_id";
             // 
@@ -196,6 +198,8 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(74, 21);
             this.textBox2.TabIndex = 8;
+            this.toolTip1.SetToolTip(this.textBox2, "折扣輸入提示\r\n例如：9.5折輸入95");
+            this.textBox2.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox2_KeyUp);
             // 
             // msleBut
             // 
@@ -210,6 +214,7 @@
             // 
             // dateTimePicker2
             // 
+            this.dateTimePicker2.CustomFormat = "hh:mm dd/mm/yyyy";
             this.dateTimePicker2.Location = new System.Drawing.Point(244, 47);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(146, 21);
@@ -217,11 +222,13 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Checked = false;
+            this.dateTimePicker1.CustomFormat = "hh:mm dd/mm/yyyy";
             this.dateTimePicker1.Location = new System.Drawing.Point(72, 47);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(137, 21);
             this.dateTimePicker1.TabIndex = 4;
-            this.dateTimePicker1.Value = new System.DateTime(1990, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.Value = new System.DateTime(2009, 1, 1, 0, 0, 0, 0);
             // 
             // label4
             // 
@@ -394,6 +401,10 @@
             // 
             this.invoicedetailBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_detail);
             // 
+            // toolTip1
+            // 
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
             // InCoFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -458,5 +469,6 @@
         private System.Windows.Forms.Button printBut;
         private System.Windows.Forms.DataGridViewTextBoxColumn Invoice_nmber;
         private System.Windows.Forms.Button edit_but;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
