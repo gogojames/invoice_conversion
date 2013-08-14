@@ -201,6 +201,13 @@ namespace InvoiceConversion
 
         }
 
+        float setQuantity(float qty)
+        {
+            var d = qty * 1.05;
+            var q = Math.Ceiling(d);
+            return (float)q;
+        }
+
         private void SaveBut_Click(object sender, EventArgs e)
         {
             Data.Invoice_master imaster = this.invoicemasterBindingSource.Current as Data.Invoice_master;
@@ -219,11 +226,13 @@ namespace InvoiceConversion
                 int i = 0;
                 sqls[i] = sql;
                 objs[i] = imaster.Parameter;
+                //所有单位都乘以1.05，结果取整数并加1
                 foreach (Data.Invoice_detail d in this.List_detail)
                 {
                     i++;
                     d.BeginEdit();
                     d.Invoice_nmber = imaster.Invoice_nmber;
+                    d.Qty = setQuantity(d.Qty);
                     System.Diagnostics.Debug.WriteLine(d.Invoice_nmber);
                     sqls[i] = d.GetSqlQuery(DataMode, string.Empty);
                     objs[i] = d.Parameter;
