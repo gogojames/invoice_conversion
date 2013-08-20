@@ -221,13 +221,22 @@ namespace InvoiceConversion
 
                 string sql = imaster.GetSqlQuery(DataMode, String.Empty);
                 //Common.MsSql.ExSql(sql, imaster.Parameter);
-                string[] sqls = new string[List_detail.Count + 1];
-                object[] objs = new object[List_detail.Count + 1];
+                int c = 0;
+                var temp_details = new List<Data.Invoice_detail>();
+                foreach(Data.Invoice_detail d in this.List_detail){
+                    if (d.Isdelete)
+                    {
+                        temp_details.Add(d);
+                    }
+                }
+                c = temp_details.Count;
+                string[] sqls = new string[c];
+                object[] objs = new object[c];
                 int i = 0;
                 sqls[i] = sql;
                 objs[i] = imaster.Parameter;
                 //所有单位都乘以1.05，结果取整数并加1
-                foreach (Data.Invoice_detail d in this.List_detail)
+                foreach (Data.Invoice_detail d in temp_details)
                 {
                     i++;
                     d.BeginEdit();
@@ -236,9 +245,9 @@ namespace InvoiceConversion
                     System.Diagnostics.Debug.WriteLine(d.Invoice_nmber);
                     sqls[i] = d.GetSqlQuery(DataMode, string.Empty);
                     objs[i] = d.Parameter;
-                    d.EndEdit();
-
+                    d.EndEdit(); 
                 }
+                
                 imaster.EndEdit();
                 if (Common.MsSql.ExcMulSql(sqls, objs))
                 {

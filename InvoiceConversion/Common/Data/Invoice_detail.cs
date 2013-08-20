@@ -11,6 +11,27 @@ namespace InvoiceConversion.Data
         {
             return "Invoice_detail";
         }
+
+        private bool isdelete;
+
+        public bool Isdelete
+        {
+            get { return isdelete; }
+            set
+            {
+                if (isdelete != value)
+                {
+                    if (InEdit)
+                    {
+                        SaveState("Isdelete", isdelete);
+                        SaveData("Isdelete", value);
+                    }
+                    isdelete = value;
+                    OnPropertyChanged("Isdelete");
+                }
+            }
+        }
+
         private int detail_id;
 
         public int Detail_id
@@ -24,7 +45,7 @@ namespace InvoiceConversion.Data
                         SaveState("detail_id", detail_id);
                         SaveData("detail_id", value);
                     }
-                    detail_id = value;
+                    detail_id = value;  
                     OnPropertyChanged("detail_id");
                 }
 

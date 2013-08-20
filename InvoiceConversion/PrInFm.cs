@@ -112,7 +112,7 @@ namespace InvoiceConversion
 
         List<Data.Invoice_detail> getMasterDetail(string inm)
         {
-            string w  = " where Invoice_nmber= @Invoice_nmber ";
+            string w = " where Invoice_nmber= @Invoice_nmber ";
             
             List<Data.Invoice_detail> list_d = new List<Data.Invoice_detail>();
             if (string.IsNullOrEmpty(inm)) return list_d;

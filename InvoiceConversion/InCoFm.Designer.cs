@@ -54,6 +54,7 @@
             this.invoicemasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.isdelete = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.aInvoiceidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Item_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +65,8 @@
             this.Invoice_nmber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoicedetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.label8 = new System.Windows.Forms.Label();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).BeginInit();
@@ -77,6 +80,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.dateTimePicker3);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.edit_but);
             this.groupBox1.Controls.Add(this.printBut);
             this.groupBox1.Controls.Add(this.custmer_text);
@@ -324,6 +329,7 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.isdelete,
             this.aInvoiceidDataGridViewTextBoxColumn,
             this.Item_name,
             this.itemidDataGridViewTextBoxColumn,
@@ -339,6 +345,12 @@
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(734, 142);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // isdelete
+            // 
+            this.isdelete.DataPropertyName = "Isdelete";
+            this.isdelete.HeaderText = "選擇";
+            this.isdelete.Name = "isdelete";
             // 
             // aInvoiceidDataGridViewTextBoxColumn
             // 
@@ -405,6 +417,24 @@
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(226, 92);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 12);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "開單日期";
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.CustomFormat = "hh:mm dd/mm/yyyy";
+            this.dateTimePicker3.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.invoicemasterBindingSource, "Last_update", true));
+            this.dateTimePicker3.Location = new System.Drawing.Point(285, 86);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(146, 21);
+            this.dateTimePicker3.TabIndex = 19;
+            // 
             // InCoFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -459,6 +489,10 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox reme;
         private System.Windows.Forms.BindingSource invoicemasterBindingSource;
+        private System.Windows.Forms.Button printBut;
+        private System.Windows.Forms.Button edit_but;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isdelete;
         private System.Windows.Forms.DataGridViewTextBoxColumn aInvoiceidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Item_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn itemidDataGridViewTextBoxColumn;
@@ -466,9 +500,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn unitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn qtyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Remake;
-        private System.Windows.Forms.Button printBut;
         private System.Windows.Forms.DataGridViewTextBoxColumn Invoice_nmber;
-        private System.Windows.Forms.Button edit_but;
-        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker3;
+        private System.Windows.Forms.Label label8;
     }
 }
