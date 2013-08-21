@@ -419,13 +419,24 @@ namespace InvoiceConversion.Common
 
         public static List<Data.Customer> getCustmer()
         {
+            return MsSql.getCustmer(string.Empty);
+        }
+
+        public static List<Data.Customer> getCustmer(string clientName)
+        {
             List<Data.Customer> lc = new List<Data.Customer>();
-            lc.Add(new Data.Customer() { Clent_n ="全部", Client_id="" });
+            lc.Add(new Data.Customer() { Clent_n = "全部", Client_id = "" });
             using (System.Data.SqlClient.SqlConnection conn = MsSql.connection)
             {
-                string sql = "SELECT   * FROM      Custmer";
+                string sql = "SELECT   * FROM      Custmer ";
+                string where = "where (Client_N LIKE @clientid)";
                 System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
                 cmd.CommandText = sql;
+                if (!string.IsNullOrEmpty(clientName))
+                {
+                    cmd.CommandText += where;
+                    cmd.Parameters.Add("@clientid", System.Data.SqlDbType.NVarChar).Value = "%" + clientName+"%";
+                }
                 cmd.Connection = conn;
                 try
                 {

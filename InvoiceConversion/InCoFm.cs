@@ -340,5 +340,14 @@ namespace InvoiceConversion
         {
             
         }
+
+        private void selcu_Click(object sender, EventArgs e)
+        {
+            ScFm sf = new ScFm();
+            if (sf.ShowDialog() == DialogResult.OK)
+            {
+                custmer_text.Text = sf.Use_Data.Clent_n;
+            }
+        }
     }
 }

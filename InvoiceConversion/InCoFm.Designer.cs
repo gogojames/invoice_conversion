@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.invoicemasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label8 = new System.Windows.Forms.Label();
             this.edit_but = new System.Windows.Forms.Button();
             this.printBut = new System.Windows.Forms.Button();
             this.custmer_text = new System.Windows.Forms.ComboBox();
@@ -51,7 +54,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.reme = new System.Windows.Forms.TextBox();
             this.SaveBut = new System.Windows.Forms.Button();
-            this.invoicemasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.isdelete = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -65,12 +67,11 @@
             this.Invoice_nmber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoicedetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.label8 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
+            this.selcu = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.invoicemasterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoicemasterBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicedetailBindingSource)).BeginInit();
@@ -80,6 +81,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.selcu);
             this.groupBox1.Controls.Add(this.dateTimePicker3);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.edit_but);
@@ -103,6 +105,31 @@
             this.groupBox1.Size = new System.Drawing.Size(734, 113);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // dateTimePicker3
+            // 
+            this.dateTimePicker3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker3.CustomFormat = "hh:mm dd/mm/yyyy";
+            this.dateTimePicker3.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.invoicemasterBindingSource, "Last_update", true));
+            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker3.Location = new System.Drawing.Point(398, 85);
+            this.dateTimePicker3.Name = "dateTimePicker3";
+            this.dateTimePicker3.Size = new System.Drawing.Size(146, 21);
+            this.dateTimePicker3.TabIndex = 19;
+            // 
+            // invoicemasterBindingSource
+            // 
+            this.invoicemasterBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_master);
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(339, 91);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 12);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "開單日期";
             // 
             // edit_but
             // 
@@ -220,6 +247,7 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.CustomFormat = "hh:mm dd/mm/yyyy";
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker2.Location = new System.Drawing.Point(244, 47);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(146, 21);
@@ -229,6 +257,7 @@
             // 
             this.dateTimePicker1.Checked = false;
             this.dateTimePicker1.CustomFormat = "hh:mm dd/mm/yyyy";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(72, 47);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(137, 21);
@@ -302,10 +331,6 @@
             this.SaveBut.Text = "生成發票(&N)";
             this.SaveBut.UseVisualStyleBackColor = true;
             this.SaveBut.Click += new System.EventHandler(this.SaveBut_Click);
-            // 
-            // invoicemasterBindingSource
-            // 
-            this.invoicemasterBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_master);
             // 
             // groupBox2
             // 
@@ -417,23 +442,16 @@
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
-            // label8
+            // selcu
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(226, 92);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(53, 12);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "開單日期";
-            // 
-            // dateTimePicker3
-            // 
-            this.dateTimePicker3.CustomFormat = "hh:mm dd/mm/yyyy";
-            this.dateTimePicker3.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.invoicemasterBindingSource, "Last_update", true));
-            this.dateTimePicker3.Location = new System.Drawing.Point(285, 86);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.Size = new System.Drawing.Size(146, 21);
-            this.dateTimePicker3.TabIndex = 19;
+            this.selcu.Location = new System.Drawing.Point(391, 14);
+            this.selcu.Name = "selcu";
+            this.selcu.Size = new System.Drawing.Size(40, 23);
+            this.selcu.TabIndex = 20;
+            this.selcu.Text = "...";
+            this.toolTip1.SetToolTip(this.selcu, "按客戶名查找");
+            this.selcu.UseVisualStyleBackColor = true;
+            this.selcu.Click += new System.EventHandler(this.selcu_Click);
             // 
             // InCoFm
             // 
@@ -452,9 +470,9 @@
             this.Load += new System.EventHandler(this.InCoFm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.invoicemasterBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoicemasterBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicedetailBindingSource)).EndInit();
@@ -503,5 +521,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Invoice_nmber;
         private System.Windows.Forms.DateTimePicker dateTimePicker3;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button selcu;
     }
 }
