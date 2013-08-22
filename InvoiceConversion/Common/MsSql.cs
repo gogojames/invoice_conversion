@@ -196,7 +196,7 @@ namespace InvoiceConversion.Common
             {
                 string sql = "SELECT Custmer.Client_N, Custmer.Client_ID, Custmer.Address, Invoice.AInvoice_ID, " +
   "              Invoice.Invoice_ID, Invoice.Contact_Per, Invoice.Invoice_Date, Invoice_item.Unit, "+
- "               Invoice_item.Price, Invoice_item.Qty,Invoice_item.Item_ID,Invoice_item.Metrial_N " +
+ "               Invoice_item.Price, Invoice_item.Qty,Invoice_item.Item_ID,Invoice_item.Metrial_ID,Invoice_item.Metrial_N " +
 "FROM      Custmer INNER JOIN "+
   "              Invoice ON Custmer.Client_ID = Invoice.Client_ID INNER JOIN "+
  "               Invoice_item ON Invoice.AInvoice_ID = Invoice_item.AInvoice_ID "+
@@ -217,6 +217,7 @@ namespace InvoiceConversion.Common
                     Data.Invoice_detail idetail = new Data.Invoice_detail();
                     idetail.BeginEdit();
                     idetail.AInvoice_id = MsSql.ToString(reader["AInvoice_ID"]);
+                    idetail.Isdelete = true;
                     float item_id;
                     float.TryParse(reader["Item_ID"].ToString(), out item_id);
                     idetail.Item_id = item_id;
@@ -226,6 +227,7 @@ namespace InvoiceConversion.Common
                     float _rpice = 0;
                     float.TryParse(reader["Price"].ToString(), out _rpice);
                     idetail.Item_name = reader["Metrial_N"].ToString();
+                    idetail.Item_code = reader["Metrial_ID"].ToString();
                     idetail.Rpice = _rpice;
                     idetail.Unit = reader["Unit"].ToString();
                     dids.Add(idetail);
@@ -271,6 +273,7 @@ namespace InvoiceConversion.Common
                         float _rpice = 0;
                         float.TryParse(reader["Rpice"].ToString(), out _rpice);
                         idetail.Item_name = reader["Item_name"].ToString();
+                        idetail.Item_code = reader["Item_code"].ToString();
                         idetail.Rpice = _rpice;
                         idetail.Unit = reader["Unit"].ToString();
                         idetail.Invoice_nmber = reader["invoice_nmber"].ToString();

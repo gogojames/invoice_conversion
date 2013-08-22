@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.invoicemasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.clientidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoicenmberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +41,7 @@
             this.lastupdateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.remakeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoicedateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.invoicemasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicemasterBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -61,16 +61,17 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(22, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 1;
-            this.label1.Text = "發票編號:";
+            this.label1.Text = "输入關鍵詞";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(87, 33);
+            this.textBox1.Location = new System.Drawing.Point(90, 33);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(250, 21);
             this.textBox1.TabIndex = 2;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // dataGridView1
@@ -100,10 +101,6 @@
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyPress);
-            // 
-            // invoicemasterBindingSource
-            // 
-            this.invoicemasterBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_master);
             // 
             // clientidDataGridViewTextBoxColumn
             // 
@@ -166,6 +163,10 @@
             this.invoicedateDataGridViewTextBoxColumn.Name = "invoicedateDataGridViewTextBoxColumn";
             this.invoicedateDataGridViewTextBoxColumn.ReadOnly = true;
             this.invoicedateDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // invoicemasterBindingSource
+            // 
+            this.invoicemasterBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_master);
             // 
             // InManage
             // 

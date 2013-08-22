@@ -180,6 +180,26 @@ namespace InvoiceConversion.Data
             }
         }
 
+        private string item_code;
+
+        public string Item_code
+        {
+            get { return item_code; }
+            set
+            {
+                if (item_code != value)
+                {
+                    if (InEdit)
+                    {
+                        SaveState("Item_code", item_code);
+                        SaveData("Item_code", value);
+                    }
+                    item_code = value;
+                    OnPropertyChanged("Item_code");
+                }
+            }
+        }
+
         private string remake;
 
         public string Remake

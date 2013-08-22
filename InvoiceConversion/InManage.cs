@@ -11,9 +11,28 @@ namespace InvoiceConversion
     public partial class InManage : Form
     {
         public Data.Invoice_master Data;
+        string inp_txt = "請輸入發票編號...";
+        System.Drawing.Color inp_color = System.Drawing.SystemColors.ControlLight;
+        System.Drawing.Color def_color = System.Drawing.SystemColors.WindowText;
         public InManage()
         {
             InitializeComponent();
+            input_style(string.Empty);
+        }
+
+        void input_style(string txt)
+        {
+            if (string.IsNullOrEmpty(txt) || txt.Equals(inp_txt))
+            {
+                textBox1.ForeColor = inp_color;
+                textBox1.Text = inp_txt;
+                textBox1.Select();
+            }
+            else
+            {
+                textBox1.Text = txt;
+                textBox1.ForeColor = def_color;
+            }
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -21,6 +40,13 @@ namespace InvoiceConversion
             if (e.KeyChar == 13)
             {
                 initData();
+            }
+            else
+            {
+                if (inp_txt.Equals(textBox1.Text))
+                {
+                    textBox1.SelectAll();
+                }
             }
         }
 
@@ -63,6 +89,14 @@ namespace InvoiceConversion
             }
             this.Data = master;
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            string s = (sender as System.Windows.Forms.TextBox).Text;
+            if (s.Equals(inp_txt))
+                return;
+            input_style(s);
         }
     }
 }
