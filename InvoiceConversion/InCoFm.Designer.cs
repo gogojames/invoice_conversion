@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.selcu = new System.Windows.Forms.Button();
             this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
             this.invoicemasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label8 = new System.Windows.Forms.Label();
@@ -67,7 +68,6 @@
             this.Invoice_nmber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoicedetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.selcu = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.invoicemasterBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
@@ -106,10 +106,21 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // selcu
+            // 
+            this.selcu.Location = new System.Drawing.Point(391, 14);
+            this.selcu.Name = "selcu";
+            this.selcu.Size = new System.Drawing.Size(40, 23);
+            this.selcu.TabIndex = 20;
+            this.selcu.Text = "...";
+            this.toolTip1.SetToolTip(this.selcu, "按客戶名查找");
+            this.selcu.UseVisualStyleBackColor = true;
+            this.selcu.Click += new System.EventHandler(this.selcu_Click);
+            // 
             // dateTimePicker3
             // 
             this.dateTimePicker3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker3.CustomFormat = "hh:mm dd/mm/yyyy";
+            this.dateTimePicker3.CustomFormat = "dd/M/yyyy";
             this.dateTimePicker3.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.invoicemasterBindingSource, "Last_update", true));
             this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker3.Location = new System.Drawing.Point(398, 85);
@@ -246,7 +257,7 @@
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.CustomFormat = "hh:mm dd/mm/yyyy";
+            this.dateTimePicker2.CustomFormat = "dd/M/yyyy";
             this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker2.Location = new System.Drawing.Point(244, 47);
             this.dateTimePicker2.Name = "dateTimePicker2";
@@ -256,7 +267,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Checked = false;
-            this.dateTimePicker1.CustomFormat = "hh:mm dd/mm/yyyy";
+            this.dateTimePicker1.CustomFormat = "dd/M/yyyy";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(72, 47);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -441,17 +452,6 @@
             // toolTip1
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            // 
-            // selcu
-            // 
-            this.selcu.Location = new System.Drawing.Point(391, 14);
-            this.selcu.Name = "selcu";
-            this.selcu.Size = new System.Drawing.Size(40, 23);
-            this.selcu.TabIndex = 20;
-            this.selcu.Text = "...";
-            this.toolTip1.SetToolTip(this.selcu, "按客戶名查找");
-            this.selcu.UseVisualStyleBackColor = true;
-            this.selcu.Click += new System.EventHandler(this.selcu_Click);
             // 
             // InCoFm
             // 

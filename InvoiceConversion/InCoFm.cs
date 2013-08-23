@@ -46,6 +46,7 @@ namespace InvoiceConversion
             label6.Visible = true;
             label1.Visible = false;
             custmer_text.Visible = false;
+            selcu.Visible = false;
             edit_but.Click += new EventHandler(SaveBut_Click);
             this.custmer_text.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.invoicemasterBindingSource, "Client_name", true));
             this.title_combox.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.invoicemasterBindingSource, "invoice_title_id", true));
@@ -178,7 +179,18 @@ namespace InvoiceConversion
         private void msleBut_Click(object sender, EventArgs e)
         {
             //修改折扣
-            
+            if (string.IsNullOrEmpty(textBox2.Text))
+            {
+                MessageBox.Show("輸入折扣!\n折扣的輸入格式是：9.5折輸入95，9折輸入9");
+                textBox2.Focus();
+                return;
+            }
+            if (!System.Text.RegularExpressions.Regex.IsMatch(textBox2.Text, @"^\d+$"))
+            {
+                MessageBox.Show("輸入的不是整數，重新輸入!\n折扣的輸入格式是：9.5折輸入95，9折輸入9");
+                textBox2.Select();
+                return;
+            }
             Double savl = 0.00;
             string savl_str = string.Format("0.{0}", textBox2.Text);
             Double.TryParse(savl_str, out savl);
@@ -188,12 +200,12 @@ namespace InvoiceConversion
                 var dv = dataGridView1.Rows[i];
                 if (dv.Cells[3].Value == null) continue;
                 float p;
-                float.TryParse(dv.Cells[3].Value.ToString(), out p);
+                float.TryParse(dv.Cells[4].Value.ToString(), out p);
 
                 float.TryParse(string.Format("{0:F2}", (p * savl)), out p);
                // List_detail[i].Rpice = p;
-                dv.Cells[3].Value = p;
-                dv.Cells[3].Selected = true;
+                dv.Cells[4].Value = p;
+                dv.Cells[4].Selected = true;
             }
 
            // MessageBox.Show("修改成功");
@@ -230,8 +242,8 @@ namespace InvoiceConversion
                     }
                 }
                 c = temp_details.Count;
-                string[] sqls = new string[c];
-                object[] objs = new object[c];
+                string[] sqls = new string[c+1];
+                object[] objs = new object[c+1];
                 int i = 0;
                 sqls[i] = sql;
                 objs[i] = imaster.Parameter;
@@ -245,7 +257,7 @@ namespace InvoiceConversion
                     System.Diagnostics.Debug.WriteLine(d.Invoice_nmber);
                     sqls[i] = d.GetSqlQuery(DataMode, string.Empty);
                     objs[i] = d.Parameter;
-                    d.EndEdit(); 
+                    d.EndEdit();
                 }
                 
                 imaster.EndEdit();

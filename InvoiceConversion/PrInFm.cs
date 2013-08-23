@@ -94,7 +94,7 @@ namespace InvoiceConversion
                         m.Client_id = reader["Client_id"].ToString();
                         m.Client_name = reader["Client_name"].ToString();
                         m.Invoice_date =DateTime.Parse( reader["Invoice_date"].ToString());
-
+                        
                         m.Invoice_nmber = reader["Invoice_nmber"].ToString();
                         m.Invoice_title_id =int.Parse( reader["Invoice_title_id"].ToString());
                         //m.Last_update =DateTime.Parse( reader["Last_update"].ToString());
@@ -139,7 +139,7 @@ namespace InvoiceConversion
                         float.TryParse(reader["Qty"].ToString(), out _qty);
                         m.Qty = _qty;
                         m.Item_name = reader["Item_name"].ToString();
-
+                        m.Item_code = reader["Item_code"].ToString();
                         m.Invoice_nmber = reader["Invoice_nmber"].ToString();
                         m.Detail_id = int.Parse(reader["Detail_id"].ToString());
                         m.Unit = reader["unit"].ToString();

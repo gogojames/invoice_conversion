@@ -87,6 +87,14 @@
           <DataField>Invoice_nmber</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Isdelete">
+          <DataField>Isdelete</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Item_code">
+          <DataField>Item_code</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="Item_id">
           <DataField>Item_id</DataField>
           <rd:TypeName>System.Single</rd:TypeName>
@@ -97,7 +105,7 @@
         </Field>
         <Field Name="Money">
           <DataField>Money</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+          <rd:TypeName>System.Single</rd:TypeName>
         </Field>
         <Field Name="Parameter">
           <DataField>Parameter</DataField>
@@ -105,7 +113,7 @@
         </Field>
         <Field Name="Qty">
           <DataField>Qty</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+          <rd:TypeName>System.Single</rd:TypeName>
         </Field>
         <Field Name="Remake">
           <DataField>Remake</DataField>
@@ -113,7 +121,7 @@
         </Field>
         <Field Name="Rpice">
           <DataField>Rpice</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+          <rd:TypeName>System.Single</rd:TypeName>
         </Field>
         <Field Name="Unit">
           <DataField>Unit</DataField>
@@ -178,6 +186,9 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
+              <Width>0.98425in</Width>
+            </TablixColumn>
+            <TablixColumn>
               <Width>2.47905in</Width>
             </TablixColumn>
             <TablixColumn>
@@ -200,6 +211,38 @@
             <TablixRow>
               <Height>0.18414in</Height>
               <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox10">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>代碼編號</Value>
+                              <Style>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox10</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox1">
@@ -399,6 +442,38 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
+                    <Textbox Name="Item_code">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Item_code.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Left</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Item_code</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
                     <Textbox Name="Item_name">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -493,7 +568,6 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -604,6 +678,7 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
+            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -629,7 +704,7 @@
         <Top>0.17639cm</Top>
         <Left>0.38841cm</Left>
         <Height>0.93543cm</Height>
-        <Width>21.48235cm</Width>
+        <Width>23.98235cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -640,7 +715,7 @@
     <Height>0.45855in</Height>
     <Style />
   </Body>
-  <Width>8.73552in</Width>
+  <Width>9.59479in</Width>
   <Page>
     <PageHeader>
       <Height>4.05758cm</Height>
@@ -920,7 +995,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=First(Fields!Invoice_date.Value, "inmaster")</Value>
+                  <Value>=First(Fields!Last_update.Value, "inmaster")</Value>
                   <Style />
                 </TextRun>
               </TextRuns>
