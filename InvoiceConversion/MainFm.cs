@@ -65,5 +65,16 @@ namespace InvoiceConversion
                 }
             }
         }
+
+        private void a1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void a2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox1 ab = new AboutBox1();
+            ab.ShowDialog();
+        }
     }
 }

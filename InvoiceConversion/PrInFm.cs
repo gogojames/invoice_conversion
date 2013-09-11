@@ -42,7 +42,15 @@ namespace InvoiceConversion
                 MessageBox.Show("請選擇發標題和編號.");
                 return;
             }
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "InvoiceConversion.RePort.Report1.rdlc";
+            int ri = comboBox3.SelectedIndex;
+            if (ri < 0)
+            {
+                MessageBox.Show("請選擇報表.");
+                return;
+            }
+            string[] reports = new string[] {"InvoiceConversion.RePort.Report1.rdlc","InvoiceConversion.RePort.Report2.rdlc" };
+            
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = reports[ri];
             this.reportViewer1.LocalReport.DataSources.Clear();
             var data = new List<Data.Invoice_master>();
 

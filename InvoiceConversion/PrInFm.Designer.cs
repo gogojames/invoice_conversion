@@ -36,6 +36,8 @@
             this.invoiceTitelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.invoicemasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.invoiceTitelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicemasterBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +54,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(602, 10);
+            this.button1.Location = new System.Drawing.Point(797, 11);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -101,11 +103,34 @@
             // 
             this.invoicemasterBindingSource.DataSource = typeof(InvoiceConversion.Data.Invoice_master);
             // 
+            // comboBox3
+            // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "發票單",
+            "送貨單"});
+            this.comboBox3.Location = new System.Drawing.Point(629, 13);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(121, 20);
+            this.comboBox3.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(570, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "選擇報表";
+            // 
             // PrInFm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 470);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
@@ -129,6 +154,8 @@
         private System.Windows.Forms.BindingSource invoiceTitelBindingSource;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.BindingSource invoicemasterBindingSource;
+        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Label label2;
 
     }
 }
