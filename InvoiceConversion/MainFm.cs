@@ -68,7 +68,8 @@ namespace InvoiceConversion
 
         private void a1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            smsfm sf = new smsfm();
+            sf.ShowDialog();
         }
 
         private void a2ToolStripMenuItem_Click(object sender, EventArgs e)

@@ -65,39 +65,39 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(57, 22);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(54, 22);
             this.toolStripDropDownButton1.Text = "主菜單";
             // 
             // invoiceMe
             // 
             this.invoiceMe.Name = "invoiceMe";
-            this.invoiceMe.Size = new System.Drawing.Size(152, 22);
+            this.invoiceMe.Size = new System.Drawing.Size(118, 22);
             this.invoiceMe.Text = "發票";
             this.invoiceMe.Click += new System.EventHandler(this.invoiceMe_Click);
             // 
             // manageInMe
             // 
             this.manageInMe.Name = "manageInMe";
-            this.manageInMe.Size = new System.Drawing.Size(152, 22);
+            this.manageInMe.Size = new System.Drawing.Size(118, 22);
             this.manageInMe.Text = "發票管理";
             this.manageInMe.Click += new System.EventHandler(this.manageInMe_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(115, 6);
             // 
             // printMe
             // 
             this.printMe.Name = "printMe";
-            this.printMe.Size = new System.Drawing.Size(152, 22);
+            this.printMe.Size = new System.Drawing.Size(118, 22);
             this.printMe.Text = "列印";
             this.printMe.Click += new System.EventHandler(this.printMe_Click);
             // 
             // colseMe
             // 
             this.colseMe.Name = "colseMe";
-            this.colseMe.Size = new System.Drawing.Size(152, 22);
+            this.colseMe.Size = new System.Drawing.Size(118, 22);
             this.colseMe.Text = "退出";
             this.colseMe.Click += new System.EventHandler(this.colseMe_Click);
             // 
@@ -108,14 +108,14 @@
             this.a2ToolStripMenuItem});
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(56, 22);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(48, 22);
             this.toolStripDropDownButton2.Text = "About";
             // 
             // a1ToolStripMenuItem
             // 
             this.a1ToolStripMenuItem.Name = "a1ToolStripMenuItem";
             this.a1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.a1ToolStripMenuItem.Text = "回饋問題";
+            this.a1ToolStripMenuItem.Text = "幫助回饋";
             this.a1ToolStripMenuItem.Click += new System.EventHandler(this.a1ToolStripMenuItem_Click);
             // 
             // a2ToolStripMenuItem
