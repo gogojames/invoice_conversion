@@ -189,7 +189,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>客戶：</Value>
+                <Value>客戶</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -222,7 +222,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>交貨地址點：</Value>
+                <Value>交貨地址點</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -357,7 +357,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>單號：</Value>
+                <Value>單號</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -391,7 +391,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>交貨日期：</Value>
+                <Value>交貨日期</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
@@ -491,7 +491,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>合計：</Value>
+                <Value>合計</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>

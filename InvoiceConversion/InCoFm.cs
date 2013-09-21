@@ -16,9 +16,30 @@ namespace InvoiceConversion
         public List<Data.Invoice_detail> List_detail
         {
             get { return list_detail; }
-            set { list_detail = value; }
+            set { list_detail = value;
+
+            foreach (Data.Invoice_detail de in list_detail)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(de.AInvoice_id);
+                sb.Append("-");
+                sb.Append(de.Item_id);
+                Temp_detail[sb.ToString()]= de.Rpice;
+            }
+            }
         }
         List<Data.Invoice_master> list_master;
+        Dictionary<string,float> temp_detail;
+        public Dictionary<string,float> Temp_detail {
+            private set {
+                
+                temp_detail = value;
+                 }
+            get {
+                if (temp_detail == null)
+                    temp_detail = new Dictionary<string, float>();
+                return temp_detail; }
+        }
         public Common.Basic.FormMode DataMode;
         public InCoFm()
         {
@@ -135,7 +156,8 @@ namespace InvoiceConversion
             }
             else
             {
-                List_detail = Common.MsSql.getInvoiceDetail(currim.Client_name, dateTimePicker1.Value, dateTimePicker2.Value);
+                Data.Customer c = customerBindingSource.Current as Data.Customer;
+                List_detail = Common.MsSql.getInvoiceDetail(c.Client_id, dateTimePicker1.Value, dateTimePicker2.Value);
             }
             if (List_detail.Count == 0)
             {
@@ -198,9 +220,11 @@ namespace InvoiceConversion
             for(int i =0;i<dataGridView1.RowCount;i++)
             {
                 var dv = dataGridView1.Rows[i];
+
                 if (dv.Cells[3].Value == null) continue;
-                float p;
-                float.TryParse(dv.Cells[4].Value.ToString(), out p);
+                float p = orSavl(dv.Cells[3].Value, dv.Cells[1].Value);
+                //Debug.WriteLine(p);
+                //float.TryParse(dv.Cells[4].Value.ToString(), out p);
 
                 float.TryParse(string.Format("{0:F2}", (p * savl)), out p);
                // List_detail[i].Rpice = p;
@@ -211,6 +235,15 @@ namespace InvoiceConversion
            // MessageBox.Show("修改成功");
            // invoicedetailBindingSource.DataSource = List_detail;
 
+        }
+
+        float orSavl(object inId,object item_id)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(inId.ToString());
+            sb.Append("-");
+            sb.Append(item_id.ToString());
+            return Temp_detail[sb.ToString()];
         }
 
         float setQuantity(float qty)

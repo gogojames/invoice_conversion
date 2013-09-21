@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Diagnostics;
 
 namespace InvoiceConversion.Common
 {
@@ -192,6 +193,12 @@ namespace InvoiceConversion.Common
         public static List<Data.Invoice_detail> getInvoiceDetail(string client_name, DateTime start_date, DateTime end_date)
         {
             List<Data.Invoice_detail> dids = new List<Data.Invoice_detail>();
+            // (Custmer.Client_N = "") AND (Invoice.Invoice_Date BETWEEN '18/09/2013 0:00:00 AM' AND '20/09/2013 0:00:00 AM')
+            string wn = "(Custmer.Client_N = @client_name ) and ";
+            if (string.IsNullOrEmpty(client_name))
+            {
+                wn = "";
+            }
             using (System.Data.SqlClient.SqlConnection conn = MsSql.connection) 
             {
                 string sql = "SELECT Custmer.Client_N, Custmer.Client_ID, Custmer.Address, Invoice.AInvoice_ID, " +
@@ -200,11 +207,15 @@ namespace InvoiceConversion.Common
 "FROM      Custmer INNER JOIN "+
   "              Invoice ON Custmer.Client_ID = Invoice.Client_ID INNER JOIN "+
  "               Invoice_item ON Invoice.AInvoice_ID = Invoice_item.AInvoice_ID "+
-"WHERE   (Custmer.Client_N = @client_name ) and (Invoice.Invoice_Date BETWEEN @start_date AND @end_date) " +
+"WHERE   "+wn+"  (Invoice.Invoice_Date BETWEEN @start_date AND @end_date) " +
 "ORDER BY Invoice.Invoice_Date DESC";
             System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand();
             cmd.CommandText = sql;
-            cmd.Parameters.Add("@client_name", System.Data.SqlDbType.NVarChar).Value = client_name;
+            //Debug.WriteLine(sql);
+            if (!string.IsNullOrEmpty(wn))
+            {
+                cmd.Parameters.Add("@client_name", System.Data.SqlDbType.NVarChar).Value = client_name;
+            }
             cmd.Parameters.Add("@start_date", System.Data.SqlDbType.DateTime).Value = start_date;
             cmd.Parameters.Add("@end_date", System.Data.SqlDbType.DateTime).Value = end_date;
             cmd.Connection = conn;
