@@ -32,7 +32,7 @@ namespace InvoiceConversion
                 //client.EnableSsl = true;
                 //client.Port = 465;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new System.Net.NetworkCredential("james@hk-tl.com", "cct33940");
+                client.Credentials = new System.Net.NetworkCredential("james@hk-tl.com", "xxxxxx");
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
                 MailAddress addressFrom = new MailAddress("james@hk-tl.com", Access.Login.Table.Rows[0]["userName"].ToString());
